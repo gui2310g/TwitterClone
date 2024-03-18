@@ -30,7 +30,7 @@ export const authMiddleware = async (req, res, next) => {
 
         Jwt.verify(token, process.env.JWT, async (error, decoded) => {
             if(error) {
-                return res.Status(401).send({message: "Token Invalid!"});
+                return res.status(401).send({message: "Token Invalid!"});
             }
 
             console.log(decoded)
