@@ -1,4 +1,12 @@
-import { createService, findAllTweetsService, countTweets, topTweetsService, findByIdService} from "../services/Tweets.service.js";
+import { 
+    createService, 
+    findAllTweetsService, 
+    countTweets, 
+    topTweetsService, 
+    findByIdService, 
+    searchByTitleService,
+    byUserService
+} from "../services/Tweets.service.js";
 
 export const create = async (req, res) => {
     try {
@@ -24,7 +32,7 @@ export const create = async (req, res) => {
 
 export const findAll = async (req, res) => {
     try {
-        let {limit, offset } = req.query
+        let { limit, offset } = req.query
 
         limit = Number(limit)
         offset = Number(offset)
@@ -119,6 +127,61 @@ export const findById = async (req, res) => {
             }
         })
 
+    } catch (err) {
+        res.status(500).send({message: err.message})
+    }
+}
+
+export const searchByTitle = async (req, res) => {
+    try{
+        const {title} = req.query;
+
+        const Tweets = await searchByTitleService(title)
+
+        if(Tweets.length === 0 ) {
+            return res.status(400).send({message: "There are no posts with this title"});
+        }
+
+        return res.send({
+
+            results: Tweets.map(item => ({
+                id: item._id,
+                title: item.title,
+                text: item.text,
+                banner: item.banner,
+                likes: item.likes,
+                comments: item.comments,
+                name: item.name,
+                username: item.user.username,
+                userAvatar: item.user.avatar
+            }))
+        })
+    } catch (err) {
+        res.status(500).send({message: err.message})
+    }
+    
+}
+
+export const byUser = async (req, res) => {
+    try {
+        const id = req.userId
+
+        const Tweets = await byUserService(id)
+
+        return res.send({
+
+            results: Tweets.map(item => ({
+                id: item._id,
+                title: item.title,
+                text: item.text,
+                banner: item.banner,
+                likes: item.likes,
+                comments: item.comments,
+                name: item.name,
+                username: item.user.username,
+                userAvatar: item.user.avatar
+            }))
+        })  
     } catch (err) {
         res.status(500).send({message: err.message})
     }
