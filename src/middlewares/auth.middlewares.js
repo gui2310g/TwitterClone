@@ -26,6 +26,7 @@ export const authMiddleware = async (req, res, next) => {
         if(schema !== "Bearer") {
             return res.sendStatus(401)
         }
+        
         console.log(parts);
 
         Jwt.verify(token, process.env.JWT, async (error, decoded) => {

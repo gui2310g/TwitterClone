@@ -25,3 +25,10 @@ export const validUser = async (req, res, next) => {
     next();
 }
 
+export const ValidPost = async (req, res, next) => {
+    const iq = req.id
+
+    const Tweets = await userService.updateUserService(id, title, text, banner)
+
+    next()
+}
