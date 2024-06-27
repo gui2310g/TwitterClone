@@ -1,14 +1,18 @@
-import User from "../models/User.js";
-import Jwt from "jsonwebtoken";
+import bcrypt from "bcrypt"
+import authRepositories from "../repositories/auth.repositories.js"
 
-import dotenv from "dotenv";
-dotenv.config();
+const LoginService = async ({email, password}) => {
+    const user = await authRepositories.loginRepository(email);
 
-const token = process.env.JWT;
+    if(!user) throw new Error("User or password not found")
 
-const loginService = (email) =>
-  User.findOne({ email: email }).select("+password");
+    const passwordIsValid = bcrypt.compareSync(password, user.password)
 
-const generateToken = (id) => Jwt.sign({ id: id }, token, { expiresIn: 86400 });
+    if(!passwordIsValid) throw new Error("Password incorrect")
 
-export { loginService, generateToken };
+    const token = authRepositories.generateTokenRepository(user.id, user.email)
+
+    return {Token: token}
+}
+
+export default { LoginService };

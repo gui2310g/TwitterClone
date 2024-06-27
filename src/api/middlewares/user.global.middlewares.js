@@ -30,5 +30,5 @@ export const ValidPost = async (req, res, next) => {
 
     const Tweets = await userService.updateUserService(id, title, text, banner)
 
-    next()
+    next();
 }

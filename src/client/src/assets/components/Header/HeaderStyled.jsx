@@ -4,9 +4,9 @@ export const Headers = styled.header`
     display: flex;
     flex-direction: column;
     font-size: 30px;
-    border: 1px solid red;
     width: 300px;
     max-width: 300px;
+    border: 1px solid blue;
 `
 
 export const Nav = styled.nav`

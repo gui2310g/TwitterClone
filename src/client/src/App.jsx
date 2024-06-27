@@ -1,12 +1,13 @@
 import Home from './pages/Home/Home.jsx'
 
-import './App.css'
+import { GlobalStyled } from './GlobalStyled.jsx'
 
 function App() {
   
 
   return (
     <>
+      <GlobalStyled />
       <Home />
     </>
   )

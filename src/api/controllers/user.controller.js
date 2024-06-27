@@ -1,77 +1,54 @@
 import userService from "../services/user.service.js"
 
-const create = async (req, res) => {
+const CreateUserController = async (req, res) => {
+    const body = req.body
     try {
-        const {name, username, email, password, avatar, background} = req.body
+        const user = await userService.CreateUserService(body)
 
-        if(!username || !name || !email || !password || !avatar || !background) {
-            return res.status(400).send({message: "Submit all fields for registration"})
-        }
-
-        const user = await userService
-            .createUserService(req.body)
-            .catch((err) => console.log(err.message));
-
-        if(!user) {
-            return res.status(400).send({message: "Error creating user"});
-        }
-
-        res.status(201).send({
-            message: "User Created",
-            user: {
-                id: user.id,
-                name,
-                username,
-                email,
-                avatar,
-                background
-            }
-        })
+        return res.status(201).send(user)
 
     } catch (err) {
         res.status(500).send({message: err.message})
     }
 }
 
-const findAll = async(req, res) => {
+const FindAllUsersController = async(req, res) => {
     try {
-        const users = await userService.findAllUserService();
+        const users = await userService.FindAllUsersService();
 
-        if(users.length === 0 ) {
-            return res.status(400).send({message: "There are no registered users"});
-        }
-
-        res.send(users)
+        return res.send(users)
     } catch(err) {
         res.status(500).send({message: err.message})
     }
 }
 
-const findById = async(req, res) => {
+const FindUserByIdController = async(req, res) => {
+    const { id: userId } = req.params;
+    const userIdLogged = req.userId
     try {
-        const user = req.user
+       const user = await userService.FindUserByIdService(userId, userIdLogged)
 
-        res.send(user)
+       return res.send(user)
     } catch (err){
         res.status(500).send({message: err.message})
     }
 }
 
-const update = async(req, res) => {
+const UpdateUserController = async(req, res) => {
+    const body = req.body
+    const { id: userId } = req.params;
     try {
-        const {name, username, email, password, avatar, background} = req.body
+        const response = await userService.UpdateUserService(body, userId)
 
-        if(!username && !name  && !email  && !password  && !avatar  && !background) {
-            return res.status(400).send({message: "Submit at least one field for registration"})
-        }
+        return res.send(response)
     } catch (err) {
         res.status(500).send({message: err})
     }
 }
 
 export default {
-    create,
-    findAll,
-    findById,
-    update
+    CreateUserController,
+    FindAllUsersController,
+    FindUserByIdController,
+    UpdateUserController
 }

@@ -1,28 +1,17 @@
-import bcrypt from "bcrypt"
-import { loginService, generateToken } from "../services/auth.service.js"
 
-const login = async (req, res) => {
+import authService from "../services/auth.service.js"
+
+const LoginController = async (req, res) => {
     const {email, password} = req.body
 
     try {
-        const user = await loginService(email);
+        const user = await authService.LoginService({email, password});
 
-        if(!user) {
-            return res.status(404).send({message: "User or password not found"})
-        }
 
-        const passwordIsValid = bcrypt.compareSync(password, user.password)
-
-        if(!passwordIsValid) {
-            return res.status(404).send({message: "User or password not found"})
-        }
-
-        const token = generateToken(user.id, user.email)
-
-        res.send({Token: token})
+        return res.status(201).send(user);
     } catch (err) {
         res.status(500).send(err.message)
     }
 }
 
-export { login };
+export default { LoginController };

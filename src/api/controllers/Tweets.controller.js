@@ -1,147 +1,53 @@
-import {
-  createService,
-  findAllTweetsService,
-  countTweets,
-  topTweetsService,
-  findByIdService,
-  searchByTitleService,
-  byUserService,
-  updatePostService,
-  eraseService,
-  LikeTweetsService,
-  deleteLikeTweetsService,
-  AddCommentsService,   
-  DeleteCommentsService
-} from "../services/Tweets.service.js";
+import TweetsService from "../services/Tweets.service.js";
 
-export const create = async (req, res) => {
+const CreateTweetsController = async (req, res) => {
+  const body = req.body;
+
   try {
-    const { title, text, banner } = req.body;
+    const Tweets = await TweetsService.CreateTweetsService(body);
 
-    if (!title || !text || !banner) {
-      res.status(400).send({ message: "Submit all fields for registration" });
-    }
-
-    await createService({
-      title,
-      text,
-      banner,
-      user: req.userId,
-    });
-
-    res.sendStatus(201);
+    return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const findAll = async (req, res) => {
+const FindAllTweetsController = async (req, res) => {
+  const { limit, offset } = req.query;
+  const currentURL = req.baseUrl
   try {
-    let { limit, offset } = req.query;
+    const Tweets = await TweetsService.FindAllTweetsService(limit, offset, currentURL);
 
-    limit = Number(limit);
-    offset = Number(offset);
-
-    if (!limit && !offset) {
-      limit = 5;
-      offset = 0;
-    }
-
-    const Tweets = await findAllTweetsService(offset, limit);
-    const total = await countTweets();
-    const currentURL = req.baseUrl;
-
-    const next = offset + limit;
-    const nextUrl =
-      next < total ? `${currentURL}?limit=${limit}&offset=${next}` : null;
-
-    const previous = offset - limit < 0 ? null : offset - limit;
-    const previousURL =
-      previous != null
-        ? `${currentURL}?limit=${limit}&offset=${previous}`
-        : null;
-
-    if (Tweets.length === 0) {
-      return res
-        .status(400)
-        .send({ message: "There are no registered Tweets" });
-    }
-
-    res.send({
-      nextUrl,
-      previousURL,
-      limit,
-      offset,
-      total,
-
-      results: Tweets.map((item) => ({
-        id: item._id,
-        title: item.title,
-        text: item.text,
-        banner: item.banner,
-        likes: item.likes,
-        comments: item.comments,
-        name: item.name,
-        username: item.user.username,
-        userAvatar: item.user.avatar,
-      })),
-    });
+    return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const topTweets = async (req, res) => {
+const topTweetsController = async (req, res) => {
   try {
-    const Tweets = await topTweetsService();
+    const Tweets = await TweetsService.TopTweetsService();
 
-    if (!Tweets) {
-      return res.status(400).send({ message: "There are no registered Tweet" });
-    }
-
-    res.send({
-      tweets: {
-        id: Tweets._id,
-        title: Tweets.title,
-        text: Tweets.text,
-        banner: Tweets.banner,
-        likes: Tweets.likes,
-        comments: Tweets.comments,
-        name: Tweets.name,
-        username: Tweets.user.username,
-        userAvatar: Tweets.user.avatar,
-      },
-    });
+    return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const findById = async (req, res) => {
+const FindTweetByIdController = async (req, res) => {
+   const { id } = req.params;
+
   try {
-    const { id } = req.params;
-
-    const Tweets = await findByIdService(id);
-
-    return res.send({
-      tweets: {
-        id: Tweets._id,
-        title: Tweets.title,
-        text: Tweets.text,
-        banner: Tweets.banner,
-        likes: Tweets.likes,
-        comments: Tweets.comments,
-        name: Tweets.name,
-        username: Tweets.user.username,
-        userAvatar: Tweets.user.avatar,
-      },
-    });
+    const Tweets = await TweetsService.FindTweetByIdService(id);
+    
+    return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const searchByTitle = async (req, res) => {
+/* export const searchByTitle = async (req, res) => {
+
   try {
     const { title } = req.query;
 
@@ -169,132 +75,86 @@ export const searchByTitle = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
-};
+}; */
 
-export const byUser = async (req, res) => {
+const FindTweetByUserController = async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const id = req.userId;
+    const Tweets = await TweetsService.FindTweetbyUserService(id);
 
-    const Tweets = await byUserService(id);
-
-    return res.send({
-      results: Tweets.map((item) => ({
-        id: item._id,
-        title: item.title,
-        text: item.text,
-        banner: item.banner,
-        likes: item.likes,
-        comments: item.comments,
-        name: item.name,
-        username: item.user.username,
-        userAvatar: item.user.avatar,
-      })),
-    });
+    return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: "err.message" });
   }
 };
 
-export const update = async (req, res) => {
+const UpdateTweetController = async (req, res) => {
+  const { text, banner } = req.body;
+  const { id } = req.params;
+  const userId = req.userId;
+
   try {
-    const { title, text, banner } = req.body;
+    await TweetsService.UpdateTweetService(id, text, banner, userId);
 
-    const { id } = req.params;
-
-    if (!title && !banner && !text) {
-      res.status(400).send({
-        message: "Submit at least one field to update the post",
-      });
-    }
-
-    const Tweets = await findByIdService(id);
-
-    if (String(Tweets.user._id) !== req.userId) {
-      return res.status(400).send({ message: "You didn't update this post " });
-    }
-
-    await updatePostService(id, title, text, banner);
-
-    return res.send({ message: "Post succesfully updated " });
+    return res.status(201).send({ message: "Post successfully updated!" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const erase = async (req, res) => {
+const DeleteTweetsController = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.userId;
+
   try {
-    const { id } = req.params;
+    await TweetsService.DeleteTweetService(id, userId);
 
-    const Tweets = await findByIdService(id);
-
-    if (String(Tweets.user._id) !== req.userId) {
-      return res.status(400).send({ message: "You didn't delete this post" });
-    }
-
-    await eraseService(id);
-
-    return res.send({ message: "Post succesfully deleted " });
+    return res.status(201).send({ message: "Post deleted successfully" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const likeTweets = async (req, res) => {
+const LikeTweetsController = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.userId;
   try {
-    const { id } = req.params;
-    const userId = req.userId;
+    const Tweets = await TweetsService.likeTweetsService(id, userId);
 
-    const TweetsLiked = await LikeTweetsService(id, userId);
-    console.log(TweetsLiked);
-
-    if (!TweetsLiked) {
-      await deleteLikeTweetsService(id, userId);
-      return res.status(200).send({ message: "Like succesfully removed" });
-    }
-
-    res.send({ message: "DEU LIKE PORRA" });
+    return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const addComments = async (req, res) => {
+const addCommentsController = async (req, res) => {
+  const { id } = req.params;
+  const userId = req.userId;
+  const body = req.body;
+
   try {
-    const { id } = req.params;
-    const userId = req.userId;
-    const comment = req.body;
-
-    if (!comment) {
-        return res.status(400).send({ message: "Write a message to comment" });
-    }
-
-    await AddCommentsService(id, comment, userId);
+    await TweetsService.addCommentsService(id, body, userId);
    
-    res.send({ message: "Comment succesfully added" });
+    return res.status(201).send({ message: "Comment added successfully" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export const deleteComments = async (req, res) => {
+const deleteCommentsController = async (req, res) => {
+    const { id: idTweets, idComment } = req.params;
+    const userId = req.userId;
     try {
-        const { idTweets, idComment } = req.params;
-        const userId = req.userId;
-        
-        const commentDeleted = await DeleteCommentsService(idTweets, idComment, userId);
-       
-        const commentFinder = commentDeleted.comments.find((comment) => comment.idComment === idComment) 
-        
-        if(!commentFinder) {
-            return res.status(400).send({message: "Comment not found"})
-        }
+        await TweetsService.deleteCommentsService(idTweets, idComment, userId)
 
-        if(commentFinder.userId !== userId) {
-            return req.status(400).send({message: "You can't delete this comment"})
-        }
-
-        res.send({ message: "Comment succesfully removed" });
+        return res.status(201).send({ message: "Comment deleted successfully" });
       } catch (err) {
         res.status(500).send({ message: err.message });
       }
+}
+
+export default { 
+  CreateTweetsController, FindAllTweetsController, topTweetsController, FindTweetByIdController, FindTweetByUserController, 
+  UpdateTweetController, DeleteTweetsController, LikeTweetsController, addCommentsController, deleteCommentsController
 }

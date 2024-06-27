@@ -1,16 +1,67 @@
 import Header from "../../assets/components/Header/Header"
-import "../Home/Home.css"
+import Post from "../../assets/components/Post/Post.jsx"
+import { Main } from "./HomeStyled.jsx"
+
+import { GetAllTweets } from "../../services/TweetsServices.js";
+import { useState, useEffect } from "react";
+
+import defaultAvatar from "../../assets/imgs/defaultAvatar.png"
+
 const Home = () => {
-    return (
-        <div className="name">
+
+    const [Tweets, setTweets] = useState([]);
+
+    async function findAllTweets() {
+        const response = await GetAllTweets();
+        setTweets(response.data.results);
+    }
+
+    useEffect(() => {
+        findAllTweets();
+    }, []);
+
+    console.log(Tweets);
+
+    return ( 
+        <Main>
             <Header/>
-            <div className="teste">
-            <h1>Ola Mundo</h1>
-            </div>
-            <div className="teste2">
-            <h1>Ola Mundo beleza</h1>
-            </div>
-        </div>
+
+
+            <section id='posts'>
+                <div className="TweetBox">
+                    <form action="">
+                        <div className="TweetBoxInput">
+                           
+                            <img src={defaultAvatar} alt="Twitter userAvatar" />
+                           
+
+                            <input type="text" placeholder="What's Happening?"/>
+                        </div>
+                        
+                        <div>
+                            <div>
+
+                            </div>
+
+                            <button className="TweetBoxButton">Tweet</button>
+                        </div>
+                    </form>
+                </div>
+                {
+                Tweets.map((index) => (
+                        <Post 
+                            key={index.id}
+                            username={index.username}
+                            text={index.text}
+                            userAvatar={index.userAvatar}
+                            banner={index.banner}
+                            likes={index.likes.length}
+                            comments={index.comments.length}
+                        />
+                    )
+                )}
+            </section>
+        </Main>
     )
 }
 
