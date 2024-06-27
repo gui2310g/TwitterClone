@@ -1,22 +1,46 @@
 import styled from "styled-components";
 
 export const Headers = styled.header`
-    display: flex;
-    flex-direction: column;
     font-size: 30px;
-    width: 300px;
-    max-width: 300px;
-    border: 1px solid blue;
+ 
+    @media (max-width: 550px) {
+        background-color: black;
+        position: fixed;
+        z-index: 100;
+        bottom: 0;
+        width: 100%;
+    }
+
 `
 
 export const Nav = styled.nav`
-    
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: 20px;
     gap: 20px;
-    position: fixed;
+    
+    @media (max-width: 1290px) {
+        align-items: center;
+      
+        span {
+          display: none;
+        }
+        
+    }
+
+    @media (max-width: 550px) {
+        
+        flex-direction: row;
+        justify-content: center;
+        
+        .HeaderIcon {
+            color: white;
+        }
+
+        #logo, .TweetNavButton {
+            display: none;
+        }
+    }
 `
 
 export const NavLink = styled.a`
@@ -28,27 +52,14 @@ export const NavLink = styled.a`
     gap: 10px;
     align-items: center;
 
+    .HeaderButton {
+        background-color: black;
+    }
+
     &:hover {
         background-color: rgb(222, 222, 223);
         border-radius: 20px;
         transition: all 1s;
     }
 `
-
-export const Button = styled.button`
-  width: 250px;
-  max-width: 230px;
-  height: 50px;
-  border-radius: 25px;
-  background-color: #1c9cf0;
-  color: white;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #1B8CD8;
-    transition: all 1s;
-  }
-`;
 

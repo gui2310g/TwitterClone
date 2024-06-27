@@ -1,22 +1,45 @@
 import { FaXTwitter, FaMessage, FaGear } from "react-icons/fa6";
 import { FaHome, FaSearch, FaUser } from "react-icons/fa";
-import { IoNotifications, IoListSharp } from "react-icons/io5";
+import { Outlet } from 'react-router-dom';
 
-import { Headers, Button, Nav, NavLink } from "./HeaderStyled.jsx";
+import { Headers, Nav, NavLink } from "./HeaderStyled.jsx";
+
+import TweetButton from "../TweetButton/TweetButton.jsx";
 
 export const Header = () => {
     return (
         <Headers>
             <Nav> 
-                <FaXTwitter />
-                <NavLink href=""><FaHome/>Home</NavLink>
-                <NavLink href=""><FaSearch />Explore</NavLink>
-                <NavLink href=""><IoNotifications />Notifications</NavLink>
-                <NavLink href=""><FaMessage />Messages</NavLink>
-                <NavLink href=""><IoListSharp />Lists</NavLink>
-                <NavLink href=""><FaUser />Profile</NavLink>
-                <NavLink href=""><FaGear />Configurations</NavLink>
-                <Button>Postar</Button>
+                <FaXTwitter id="logo"/>
+
+                <NavLink to="/">
+                    <FaHome className="HeaderIcon"/>
+                    <span>Home</span>
+                </NavLink>
+
+                <NavLink href="/search">
+                    <FaSearch className="HeaderIcon"/>
+                    <span>Explore</span>
+                </NavLink>
+
+                <NavLink href="/messages">
+                    <FaMessage className="HeaderIcon"/>
+                    <span>Messages</span>
+                </NavLink>
+
+                <NavLink href="/profile">
+                    <FaUser className="HeaderIcon"/>
+                    <span>Profile</span>
+                </NavLink>
+
+                <NavLink href="/settings">
+                    <FaGear className="HeaderIcon"/>
+                    <span>Configurations</span>
+                </NavLink>
+
+                <div className="TweetNavButton">
+                    <TweetButton primary text={"Tweet"}/>
+                </div>
             </Nav>
         </Headers>
     )

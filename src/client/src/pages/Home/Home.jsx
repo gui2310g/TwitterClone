@@ -1,5 +1,8 @@
 import Header from "../../assets/components/Header/Header"
 import Post from "../../assets/components/Post/Post.jsx"
+import TweetButton from "../../assets/components/TweetButton/TweetButton.jsx";
+import Widgets from "../../assets/components/widget/Widgets.jsx";
+
 import { Main } from "./HomeStyled.jsx"
 
 import { GetAllTweets } from "../../services/TweetsServices.js";
@@ -20,13 +23,10 @@ const Home = () => {
         findAllTweets();
     }, []);
 
-    console.log(Tweets);
+  
 
     return ( 
         <Main>
-            <Header/>
-
-
             <section id='posts'>
                 <div className="TweetBox">
                     <form action="">
@@ -38,29 +38,28 @@ const Home = () => {
                             <input type="text" placeholder="What's Happening?"/>
                         </div>
                         
-                        <div>
-                            <div>
-
-                            </div>
-
-                            <button className="TweetBoxButton">Tweet</button>
+                        <div className="TweetBoxButton">
+                            <TweetButton secondary text={"Tweet"}/>
                         </div>
                     </form>
                 </div>
+                
                 {
-                Tweets.map((index) => (
+                Tweets.map((user, index) => (
                         <Post 
+                            primary
                             key={index.id}
-                            username={index.username}
-                            text={index.text}
-                            userAvatar={index.userAvatar}
-                            banner={index.banner}
-                            likes={index.likes.length}
-                            comments={index.comments.length}
+                            name={user.username}
+                            text={user.text}
+                            userAvatar={user.userAvatar}
+                            banner={user.banner}
+                            likes={user.likes.length}
+                            comments={user.comments.length}
                         />
                     )
                 )}
             </section>
+
         </Main>
     )
 }
