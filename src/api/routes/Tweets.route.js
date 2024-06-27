@@ -4,17 +4,19 @@ const router = Router()
 import TweetsController from "../controllers/Tweets.controller.js"
 import { authMiddleware } from "../middlewares/auth.middlewares.js";
 
-router.post("/create", authMiddleware, TweetsController.CreateTweetsController)
 router.get("/", TweetsController.FindAllTweetsController)
 router.get("/top", TweetsController.topTweetsController)
-/* router.get("/search", searchByTitle); */
-router.get("/byUserId/:id", authMiddleware, TweetsController.FindTweetByUserController)
-router.get("/byIdTweets/:id", authMiddleware, TweetsController.FindTweetByIdController)
-router.patch("/update/:id", authMiddleware, TweetsController.UpdateTweetController)
-router.delete("/delete/:id", authMiddleware, TweetsController.DeleteTweetsController)
-router.patch("/like/:id", authMiddleware, TweetsController.LikeTweetsController)
-router.patch("/comments/:id", authMiddleware, TweetsController.addCommentsController)
-router.patch("/comments/:idTweets/:idComment", authMiddleware, TweetsController.deleteCommentsController)
+router.get("/search", TweetsController.SearchByTextController);
+
+router.use(authMiddleware)
+router.post("/create",  TweetsController.CreateTweetsController)
+router.get("/byUserId/:id", TweetsController.FindTweetByUserController)
+router.get("/byIdTweets/:id", TweetsController.FindTweetByIdController)
+router.patch("/update/:id", TweetsController.UpdateTweetController)
+router.delete("/delete/:id", TweetsController.DeleteTweetsController)
+router.patch("/like/:id", TweetsController.LikeTweetsController)
+router.patch("/comments/:id", TweetsController.addCommentsController)
+router.patch("/comments/:idTweets/:idComment", TweetsController.deleteCommentsController)
 
 
 export default router;

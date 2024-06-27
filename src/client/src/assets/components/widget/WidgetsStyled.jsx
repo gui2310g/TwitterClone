@@ -44,3 +44,7 @@ export const Search = styled.div`
         margin: 15px;
     }
 `
+export const ErrorSpan = styled.span`
+    color: red;
+    font-weight: bold;
+`

@@ -93,35 +93,25 @@ const FindTweetByIdService = async (id) => {
     };
 };
 
-/* const searchByTitle = async (req, res) => {
-  try {
-    const { title } = req.query;
+const SearchByTextService = async (text) => {
+  const Tweets = await TweetsRepositories.SearchByTextRepository(text);
 
-    const Tweets = await searchByTitleService(title);
+  if (Tweets.length === 0) throw new Error("There are no posts with this text");
 
-    if (Tweets.length === 0) {
-      return res
-        .status(400)
-        .send({ message: "There are no posts with this title" });
-    }
-
-    return res.send({
-      results: Tweets.map((item) => ({
-        id: item._id,
-        title: item.title,
-        text: item.text,
-        banner: item.banner,
-        likes: item.likes,
-        comments: item.comments,
-        name: item.name,
-        username: item.user.username,
-        userAvatar: item.user.avatar,
-      })),
-    });
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-}; */
+  return {
+    results: Tweets.map((item) => ({
+      id: item._id,
+      title: item.title,
+      text: item.text,
+      banner: item.banner,
+      likes: item.likes,
+      comments: item.comments,
+      name: item.name,
+      username: item.user.username,
+      userAvatar: item.user.avatar,
+    })),
+  };
+};
 
 const FindTweetbyUserService = async (id) => {
     const Tweets = await TweetsRepositories.FindTweetbyUserRepository(id);
@@ -202,5 +192,5 @@ const deleteCommentsService = async (idTweets, idComment, userId) => {
 
 export default {
   CreateTweetsService, FindAllTweetsService, TopTweetsService, FindTweetByIdService, FindTweetbyUserService, 
-  UpdateTweetService, DeleteTweetService, likeTweetsService, addCommentsService, deleteCommentsService
+  UpdateTweetService, DeleteTweetService, likeTweetsService, addCommentsService, deleteCommentsService, SearchByTextService
 }

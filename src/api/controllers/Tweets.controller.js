@@ -14,9 +14,13 @@ const CreateTweetsController = async (req, res) => {
 
 const FindAllTweetsController = async (req, res) => {
   const { limit, offset } = req.query;
-  const currentURL = req.baseUrl
+  const currentURL = req.baseUrl;
   try {
-    const Tweets = await TweetsService.FindAllTweetsService(limit, offset, currentURL);
+    const Tweets = await TweetsService.FindAllTweetsService(
+      limit,
+      offset,
+      currentURL
+    );
 
     return res.status(201).send(Tweets);
   } catch (err) {
@@ -35,47 +39,28 @@ const topTweetsController = async (req, res) => {
 };
 
 const FindTweetByIdController = async (req, res) => {
-   const { id } = req.params;
+  const { id } = req.params;
 
   try {
     const Tweets = await TweetsService.FindTweetByIdService(id);
-    
+
     return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-/* export const searchByTitle = async (req, res) => {
+const SearchByTextController = async (req, res) => {
+  const { text } = req.query;
 
   try {
-    const { title } = req.query;
+    const Tweets = await TweetsService.SearchByTextService(text);
 
-    const Tweets = await searchByTitleService(title);
-
-    if (Tweets.length === 0) {
-      return res
-        .status(400)
-        .send({ message: "There are no posts with this title" });
-    }
-
-    return res.send({
-      results: Tweets.map((item) => ({
-        id: item._id,
-        title: item.title,
-        text: item.text,
-        banner: item.banner,
-        likes: item.likes,
-        comments: item.comments,
-        name: item.name,
-        username: item.user.username,
-        userAvatar: item.user.avatar,
-      })),
-    });
+    return res.status(201).send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
-}; */
+};
 
 const FindTweetByUserController = async (req, res) => {
   const { id } = req.params;
@@ -135,7 +120,7 @@ const addCommentsController = async (req, res) => {
 
   try {
     await TweetsService.addCommentsService(id, body, userId);
-   
+
     return res.status(201).send({ message: "Comment added successfully" });
   } catch (err) {
     res.status(500).send({ message: err.message });
@@ -143,18 +128,27 @@ const addCommentsController = async (req, res) => {
 };
 
 const deleteCommentsController = async (req, res) => {
-    const { id: idTweets, idComment } = req.params;
-    const userId = req.userId;
-    try {
-        await TweetsService.deleteCommentsService(idTweets, idComment, userId)
+  const { id: idTweets, idComment } = req.params;
+  const userId = req.userId;
+  try {
+    await TweetsService.deleteCommentsService(idTweets, idComment, userId);
 
-        return res.status(201).send({ message: "Comment deleted successfully" });
-      } catch (err) {
-        res.status(500).send({ message: err.message });
-      }
-}
+    return res.status(201).send({ message: "Comment deleted successfully" });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
 
-export default { 
-  CreateTweetsController, FindAllTweetsController, topTweetsController, FindTweetByIdController, FindTweetByUserController, 
-  UpdateTweetController, DeleteTweetsController, LikeTweetsController, addCommentsController, deleteCommentsController
-}
+export default {
+  CreateTweetsController,
+  FindAllTweetsController,
+  topTweetsController,
+  FindTweetByIdController,
+  FindTweetByUserController,
+  UpdateTweetController,
+  DeleteTweetsController,
+  LikeTweetsController,
+  addCommentsController,
+  deleteCommentsController,
+  SearchByTextController,
+};

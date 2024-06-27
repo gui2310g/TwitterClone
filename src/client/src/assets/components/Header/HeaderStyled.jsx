@@ -11,6 +11,9 @@ export const Headers = styled.header`
         width: 100%;
     }
 
+    a {
+        color: black;
+    }
 `
 
 export const Nav = styled.nav`

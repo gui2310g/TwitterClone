@@ -49,6 +49,13 @@ const AddTweetCommentsRepository = (idTweets, comment, userId) => {
   );
 };
 
+const SearchByTextRepository = (text) =>
+  Tweets.find({
+    text: { $regex: `${text || ""}`, $options: "i" },
+  })
+    .sort({ _id: -1 })
+    .populate("user");
+
 const DeleteTweetsCommentsRepository = (idTweets, idComment, userId) =>
   Tweets.findOneAndUpdate(
     { _id: idTweets },
@@ -67,6 +74,7 @@ export default {
   FindTweetByIdRepository,
   FindTweetbyUserRepository,
   UpdateTweetRepository,
+  SearchByTextRepository,
   EraseTweetRepository,
   LikeTweetsRepository,
   AddTweetCommentsRepository,

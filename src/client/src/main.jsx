@@ -5,9 +5,8 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import App from "./App.jsx"
 import Home from './pages/Home/Home.jsx';
 import Profile from './pages/Profile/Profile.jsx';
-import Widgets from './assets/components/widget/Widgets.jsx';
 import NotFoundPage from './pages/NotFoundPage/NoutFoundPage.jsx';
-
+import Search from './pages/Search/Search.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>
+      },
+      {
+        path: "/search/:text",
+        element: <Search/>
       },
       {
         path: "/profile",
