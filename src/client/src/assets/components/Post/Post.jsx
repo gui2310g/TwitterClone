@@ -8,11 +8,9 @@ const Post = (props) => {
                 <User primary userAvatar={props.userAvatar} name={props.name}/>
 
                 <div id="description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsa laudantium, natus earum sapiente libero soluta iure nisi sequi pariatur animi amet quasi aperiam neque sit voluptatum porro eos odit.</p>
-                     <img src={props.banner} alt="image post" />
-                </div>
-
-               
+                    <p>{props.text}</p>
+                    <img src={props.banner} alt="image post" />
+                </div>   
             </PostBody>
 
             <PostFooter>

@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const TweetsSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        require: true,
-    },
     text: {
         type: String,
         require: true,

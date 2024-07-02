@@ -15,6 +15,13 @@ const FindTweetByIdRepository = (id) => Tweets.findById(id).populate("user");
 const FindTweetbyUserRepository = (id) =>
   Tweets.find({ user: id }).sort({ _id: -1 }).populate("user");
 
+const SearchByTextRepository = (text) =>
+  Tweets.find({
+    text: { $regex: `${text || ""}`, $options: "i" },
+  })
+    .sort({ _id: -1 })
+    .populate("user");
+    
 const UpdateTweetRepository = (id, body) =>
   Tweets.updateOne(
     { _id: id },
@@ -49,12 +56,7 @@ const AddTweetCommentsRepository = (idTweets, comment, userId) => {
   );
 };
 
-const SearchByTextRepository = (text) =>
-  Tweets.find({
-    text: { $regex: `${text || ""}`, $options: "i" },
-  })
-    .sort({ _id: -1 })
-    .populate("user");
+
 
 const DeleteTweetsCommentsRepository = (idTweets, idComment, userId) =>
   Tweets.findOneAndUpdate(

@@ -1,24 +1,16 @@
 import styled from "styled-components";
 
-export const Main = styled.main`
-    #posts {
-        background-color: white;
-        border: 1px solid gray;
-        max-width: 600px;
-    }
+export const Posts = styled.section`
+    background-color: white;
+    border: 1px solid gray;
+    max-width: 600px;
+`
+export const TweetBox = styled.div`
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-bottom: 2px solid lightgray;
 
-    .TweetBox {
-        padding-bottom: 10px;
-        padding-right: 10px;
-        border-bottom: 2px solid lightgray;
-    }
-
-    .TweetBox form {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .TweetBox img{
+    img {
         border-radius: 50%;
         height: 40px;
     }
@@ -38,11 +30,5 @@ export const Main = styled.main`
 
     .TweetBoxButton {
         text-align: right;
-    }
-    
-    @media (max-width: 550px) {
-        .TweetBox {
-          
-        }
     }
 `

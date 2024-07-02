@@ -15,7 +15,8 @@ export const Users = styled.div`
   }
 
   #username {
-    display: ${props => (props.secondary ? 'block' : '')};
+    display: ${props => (props.secondary ? 'block' : 'flex')};
+    gap: 5px;
   }
   
   #username span {

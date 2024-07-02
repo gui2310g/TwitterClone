@@ -1,8 +1,7 @@
 import { FaXTwitter, FaMessage, FaGear } from "react-icons/fa6";
 import { FaHome, FaSearch, FaUser } from "react-icons/fa";
-import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Headers, Nav, NavLink } from "./HeaderStyled.jsx";
+import { Headers, Nav } from "./HeaderStyled.jsx";
 
 import TweetButton from "../TweetButton/TweetButton.jsx";
 
@@ -10,38 +9,36 @@ export const Header = () => {
   return (
     <Headers>
       <Nav>
-        <Link to="/">
-          <FaXTwitter id="logo" />
+        <Link to="/" id="Logo">
+          <FaXTwitter />
         </Link>
 
-        <NavLink to="/">
+        <Link to="/" className="headerLink">
           <FaHome className="HeaderIcon" />
           <span>Home</span>
-        </NavLink>
+        </Link>
 
-        <NavLink href="/search">
+        <Link to="/explore" className="headerLink">
           <FaSearch className="HeaderIcon" />
           <span>Explore</span>
-        </NavLink>
+        </Link>
 
-        <NavLink href="/messages">
+        <Link to="/messages" className="headerLink">
           <FaMessage className="HeaderIcon" />
           <span>Messages</span>
-        </NavLink>
+        </Link>
 
-        <NavLink href="/profile">
+        <Link to="/profile" className="headerLink">
           <FaUser className="HeaderIcon" />
           <span>Profile</span>
-        </NavLink>
+        </Link>
 
-        <NavLink href="/settings">
+        <Link to="/settings" className="headerLink">
           <FaGear className="HeaderIcon" />
           <span>Configurations</span>
-        </NavLink>
+        </Link>
 
-        <div className="TweetNavButton">
-          <TweetButton primary text={"Tweet"} />
-        </div>
+        <TweetButton primary text={"Tweet"} />
       </Nav>
     </Headers>
   );

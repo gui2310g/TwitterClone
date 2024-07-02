@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Main = styled.main`
+export const ProfilePage = styled.article`
     color: black;
     width: 100%;
     max-width: 600px;

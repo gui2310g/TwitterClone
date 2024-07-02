@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.post("/create", userController.CreateUserController)
 router.get("/", userController.FindAllUsersController)
-
+router.get("/search", userController.SearchByUsernameController);
 router.use(validId)
 router.get("/findById/:id", userController.FindUserByIdController)
 router.patch("/update/:id", userController.UpdateUserController)

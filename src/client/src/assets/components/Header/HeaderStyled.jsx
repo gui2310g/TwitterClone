@@ -1,18 +1,12 @@
 import styled from "styled-components";
 
 export const Headers = styled.header`
-    font-size: 30px;
- 
     @media (max-width: 550px) {
         background-color: black;
         position: fixed;
         z-index: 100;
         bottom: 0;
         width: 100%;
-    }
-
-    a {
-        color: black;
     }
 `
 
@@ -24,15 +18,33 @@ export const Nav = styled.nav`
     
     @media (max-width: 1290px) {
         align-items: center;
-      
+
         span {
           display: none;
         }
-        
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 25px;
+        padding: 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    #HeaderLogo {
+        width: 25px;
+    }
+
+    .headerLink:hover, #HeaderLogo:hover {
+        background-color: rgb(222, 222, 223);
+        border-radius: 20px;
+        transition: all 1s;
     }
 
     @media (max-width: 550px) {
-        
         flex-direction: row;
         justify-content: center;
         
@@ -40,29 +52,8 @@ export const Nav = styled.nav`
             color: white;
         }
 
-        #logo, .TweetNavButton {
+        #Logo, button {
             display: none;
         }
     }
 `
-
-export const NavLink = styled.a`
-    text-decoration: none;
-    color: black;
-    font-size: 25px;
-    padding: 10px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-
-    .HeaderButton {
-        background-color: black;
-    }
-
-    &:hover {
-        background-color: rgb(222, 222, 223);
-        border-radius: 20px;
-        transition: all 1s;
-    }
-`
-

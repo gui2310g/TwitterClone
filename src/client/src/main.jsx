@@ -18,6 +18,10 @@ const router = createBrowserRouter([
         element: <Home/>
       },
       {
+        path: "/explore",
+        element: <Search/>
+      },
+      {
         path: "/search/:text",
         element: <Search/>
       },

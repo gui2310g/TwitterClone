@@ -7,5 +7,10 @@ export const GetAllUsers = () => {
     return response;
 }
 
+export const SearchedUsers = (text) => {
+    const response = axios.get(`${baseUrl}user/search?username=${text}`)
+    return response;
+}
+
 
 

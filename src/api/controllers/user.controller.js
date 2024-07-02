@@ -34,6 +34,18 @@ const FindUserByIdController = async(req, res) => {
     }
 }
 
+const SearchByUsernameController = async (req, res) => {
+    const { username } = req.query
+
+    try {
+        const user = await userService.SearchByUsernameService(username)
+
+        return res.send(user)
+    }  catch (err){
+        res.status(500).send({message: err.message})
+    }
+}
+
 const UpdateUserController = async(req, res) => {
     const body = req.body
     const { id: userId } = req.params;
@@ -50,5 +62,6 @@ export default {
     CreateUserController,
     FindAllUsersController,
     FindUserByIdController,
+    SearchByUsernameController,
     UpdateUserController
 }
