@@ -1,11 +1,40 @@
+import { useEffect, useState } from "react";
 import { FaXTwitter, FaMessage, FaGear } from "react-icons/fa6";
 import { FaHome, FaSearch, FaUser } from "react-icons/fa";
+import { IoIosLogOut } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { Headers, Nav } from "./HeaderStyled.jsx";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
+import { Headers, Nav, UserLogged } from "./HeaderStyled.jsx";
+import AuthButton from "../AuthButton/AuthButton.jsx";
 import TweetButton from "../TweetButton/TweetButton.jsx";
+import TweetUser from "../TweetUser/User.jsx";
+import { userLogged } from "../../../services/userServices.js";
 
 export const Header = () => {
+  const [Users, SetUsers] = useState({});
+
+  const navigate = useNavigate()
+  async function finduserLogged() {
+    try {
+      const response = await userLogged();
+      SetUsers(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function logout() {
+    Cookies.remove("token");
+    SetUsers(undefined);
+    navigate("/auth");
+  }
+
+  useEffect(() => {
+    if (Cookies.get("token")) finduserLogged();
+  }, []);
+
   return (
     <Headers>
       <Nav>
@@ -38,7 +67,26 @@ export const Header = () => {
           <span>Configurations</span>
         </Link>
 
-        <TweetButton primary text={"Tweet"} />
+        {Users && Cookies.get("token") ? (
+          <>
+            <UserLogged>
+              <TweetUser
+                secondary
+                userAvatar={Users.avatar}
+                name={Users.username}
+              />
+              <button id="logoutButton" onClick={logout}>
+                <IoIosLogOut/>
+              </button>
+            </UserLogged>
+
+            <TweetButton primary text="Tweet" />
+          </>
+        ) : (
+          <Link to="/auth">
+            <AuthButton type="submit" text="Login" />
+          </Link>
+        )}
       </Nav>
     </Headers>
   );

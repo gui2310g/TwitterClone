@@ -6,7 +6,7 @@ const CreateTweetsController = async (req, res) => {
   try {
     const Tweets = await TweetsService.CreateTweetsService(body);
 
-    return res.status(201).send(Tweets);
+    return res.send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -22,7 +22,8 @@ const FindAllTweetsController = async (req, res) => {
       currentURL
     );
 
-    return res.status(201).send(Tweets);
+    return res.send(Tweets);
+
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -32,7 +33,8 @@ const topTweetsController = async (req, res) => {
   try {
     const Tweets = await TweetsService.TopTweetsService();
 
-    return res.status(201).send(Tweets);
+    return res.send(Tweets);
+
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -44,7 +46,7 @@ const FindTweetByIdController = async (req, res) => {
   try {
     const Tweets = await TweetsService.FindTweetByIdService(id);
 
-    return res.status(201).send(Tweets);
+    return res.send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -56,7 +58,7 @@ const SearchByTextController = async (req, res) => {
   try {
     const Tweets = await TweetsService.SearchByTextService(text);
 
-    return res.status(201).send(Tweets);
+    return res.send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -68,7 +70,7 @@ const FindTweetByUserController = async (req, res) => {
   try {
     const Tweets = await TweetsService.FindTweetbyUserService(id);
 
-    return res.status(201).send(Tweets);
+    return res.send(Tweets);
   } catch (err) {
     res.status(500).send({ message: "err.message" });
   }
@@ -82,7 +84,7 @@ const UpdateTweetController = async (req, res) => {
   try {
     await TweetsService.UpdateTweetService(id, text, banner, userId);
 
-    return res.status(201).send({ message: "Post successfully updated!" });
+    return res.send({ message: "Post successfully updated!" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -95,7 +97,7 @@ const DeleteTweetsController = async (req, res) => {
   try {
     await TweetsService.DeleteTweetService(id, userId);
 
-    return res.status(201).send({ message: "Post deleted successfully" });
+    return res.send({ message: "Post deleted successfully" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -107,7 +109,7 @@ const LikeTweetsController = async (req, res) => {
   try {
     const Tweets = await TweetsService.likeTweetsService(id, userId);
 
-    return res.status(201).send(Tweets);
+    return res.send(Tweets);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -121,7 +123,7 @@ const addCommentsController = async (req, res) => {
   try {
     await TweetsService.addCommentsService(id, body, userId);
 
-    return res.status(201).send({ message: "Comment added successfully" });
+    return res.send({ message: "Comment added successfully" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -133,7 +135,7 @@ const deleteCommentsController = async (req, res) => {
   try {
     await TweetsService.deleteCommentsService(idTweets, idComment, userId);
 
-    return res.status(201).send({ message: "Comment deleted successfully" });
+    return res.send({ message: "Comment deleted successfully" });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

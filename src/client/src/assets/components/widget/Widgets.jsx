@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Widget, FollowingWidget } from "./WidgetsStyled.jsx";
 
 import SearchForm from "../SearchInput/SearchInput.jsx";
-import User from "../TweetUser/User.jsx";
+import TweetUser from "../TweetUser/User.jsx";
 import TweetButton from "../TweetButton/TweetButton.jsx";
 
 import { GetAllUsers } from "../../../services/userServices.js";
@@ -31,7 +31,7 @@ const Widgets = () => {
           user.map((user) => {
             return (
               <div id="users" key={user._id}>
-                <User secondary userAvatar={user.avatar} name={user.username} />
+                <TweetUser secondary userAvatar={user.avatar} name={user.username} />
                 <TweetButton text={"Follow"} />
               </div>
             );

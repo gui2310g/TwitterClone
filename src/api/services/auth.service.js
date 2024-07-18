@@ -4,15 +4,15 @@ import authRepositories from "../repositories/auth.repositories.js"
 const LoginService = async ({email, password}) => {
     const user = await authRepositories.loginRepository(email);
 
-    if(!user) throw new Error("User or password not found")
+    if(!user) throw new Error("Wrong password or username")
 
-    const passwordIsValid = bcrypt.compareSync(password, user.password)
+    const passwordIsValid = await bcrypt.compare(password, user.password)
 
     if(!passwordIsValid) throw new Error("Password incorrect")
 
-    const token = authRepositories.generateTokenRepository(user.id, user.email)
+    const token = authRepositories.generateTokenRepository(user.id)
 
-    return {Token: token}
+    return token
 }
 
 export default { LoginService };

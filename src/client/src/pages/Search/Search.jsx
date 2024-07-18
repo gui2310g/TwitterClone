@@ -32,7 +32,6 @@
             try {
                 const response = await SearchedUsers(text)
                 setUsers(response.data)
-                console.log(response)
             } catch (error) {
                 setUsers([])
             }

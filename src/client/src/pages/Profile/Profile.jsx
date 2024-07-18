@@ -49,7 +49,7 @@ const Profile = () => {
             </div>
           </div>
 
-          <TweetButton text={"Edit Profile"} />
+          <TweetButton secondary text={"Edit Profile"} />
         </div>
       </section>
 

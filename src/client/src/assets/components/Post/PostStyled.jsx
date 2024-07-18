@@ -10,6 +10,7 @@ export const PostBody = styled.section`
   #description {
     margin: -25px 20px 0px 57px;
     text-align: left;
+  
   }
 
   #description img {
@@ -18,6 +19,7 @@ export const PostBody = styled.section`
     max-height: 520px;
     border-radius: 20px;
     text-align: center;
+  
   }
 `;
 

@@ -57,3 +57,21 @@ export const Nav = styled.nav`
         }
     }
 `
+
+export const UserLogged = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    #logoutButton {
+        background: none;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    #logoutButton:hover {
+        color: #1B8CD8;
+        transition: 1s all;
+    }
+`

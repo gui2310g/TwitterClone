@@ -4,7 +4,7 @@ export const ProfilePage = styled.article`
     color: black;
     width: 100%;
     max-width: 600px;
-    border: 1px solid red;
+    border: 1px solid gray;
 
     #profile {
         border-bottom: 1px solid black;
@@ -46,17 +46,6 @@ export const ProfilePage = styled.article`
         border-radius: 100px;
         border: 2px solid black;
     }   
-
-    button {
-        width: 115px;
-        height: 30px;
-        border-radius: 20px;
-        border: none;
-        background-color: #1C9DF0;
-        color: white;
-        margin-right: 15px;
-        cursor: pointer;
-    }
 
     #followers {
         display: flex;

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 import defaultAvatar from "../../assets/imgs/defaultAvatar.png";
 
+
 const Home = () => {
   const [Tweets, setTweets] = useState([]);
 

@@ -3,10 +3,9 @@ import userService from "../services/user.service.js"
 const CreateUserController = async (req, res) => {
     const body = req.body
     try {
-        const user = await userService.CreateUserService(body)
+        const token = await userService.CreateUserService(body)
 
-        return res.status(201).send(user)
-
+        return res.send(token)
     } catch (err) {
         res.status(500).send({message: err.message})
     }
@@ -49,12 +48,14 @@ const SearchByUsernameController = async (req, res) => {
 const UpdateUserController = async(req, res) => {
     const body = req.body
     const { id: userId } = req.params;
-    try {
-        const response = await userService.UpdateUserService(body, userId)
+    const userIdLogged = req.userId;
 
-        return res.send(response)
+    try {
+        const user = await userService.UpdateUserService(body, userId, userIdLogged)
+
+        return res.send(user)
     } catch (err) {
-        res.status(500).send({message: err})
+        res.status(500).send({message: err.message})
     }
 }
 

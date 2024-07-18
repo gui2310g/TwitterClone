@@ -1,3 +1,4 @@
+import authRepositories from "../repositories/auth.repositories.js";
 import userRepositories from "../repositories/user.repositories.js";
 
 const CreateUserService = async (body) => {
@@ -10,16 +11,9 @@ const CreateUserService = async (body) => {
 
   if (!user) throw new Error("Error creating user");
 
-  return {
-    user: {
-      id: user.id,
-      name,
-      username,
-      email,
-      avatar,
-      background,
-    },
-  };
+  const token = authRepositories.generateTokenRepository(user.id)
+
+  return token;
 };
 
 const FindAllUsersService = async () => {

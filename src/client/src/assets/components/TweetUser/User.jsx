@@ -1,7 +1,7 @@
 import { Users } from "./UserStyled.jsx";
 
 
-const User = (props) => {
+const TweetUser = (props) => {
     return (
         <Users primary={props.primary} secondary={props.secondary}>
             
@@ -16,4 +16,4 @@ const User = (props) => {
     )
 }
 
-export default User;
+export default TweetUser;

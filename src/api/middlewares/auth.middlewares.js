@@ -1,50 +1,29 @@
-import dotenv from "dotenv"
+import "dotenv/config";
+import jwt from "jsonwebtoken";
 import userRepositories from "../repositories/user.repositories.js";
 
-import Jwt from "jsonwebtoken";
-dotenv.config()
-
 export const authMiddleware = async (req, res, next) => {
-    
-    try {
+    const authHeader = req.headers.authorization;
 
-        const { authorization } = req.headers
-        
-
-        if(!authorization) {
-            return res.sendStatus(401)
-        }
-
-        const parts = authorization.split(" ");
-
-        if(parts.length !== 2) {
-            return res.sendStatus(401);
-        }
-        
-        const [schema, token] = parts
-
-        if(schema !== "Bearer") {
-            return res.sendStatus(401)
-        }
-        
-       
-        Jwt.verify(token, process.env.JWT, async (error, decoded) => {
-            if(error) {
-                return res.status(401).send({message: "Token Invalid!"});
-            }
-
+    if (!authHeader) return res.status(401).send({ message: "The token was not informed!" });
             
+    const parts = authHeader.split(" ");
 
-            const user = await userRepositories.findByIdUserRepository(decoded.id);
+    if(parts.length !== 2) return res.status(401).send("Token format invalid");
+    
+    const [schema, token] = parts
 
-            if(!user || !user.id) {
-                return res.Status(401).send({message: "Token Invalid!"});
-            }
+    if(schema !== "Bearer") return res.status(401).send("Token Schema invalid")
+        
+    jwt.verify(token, process.env.JWT, async (error, decoded) => {
+        if(error) return res.status(401).send({message: "Token Invalid!"});
+            
+        const user = await userRepositories.findByIdUserRepository(decoded.id);
 
-            req.userId = user.id;   
-            return next(); 
-        })
-    } catch (err) {
-        res.status(500).send({message: err.message})
-    }
+        if(!user || !user.id) return res.status(401).send({message: "User not Found"});
+            
+        req.userId = user.id;  
+
+        return next(); 
+    })
 }

@@ -1,11 +1,11 @@
 import { Posts, PostBody, PostFooter } from "./PostStyled.jsx"
 import { FaHeart, FaComments } from "react-icons/fa";
-import User from "../TweetUser/User.jsx";
+import TweetUser from "../TweetUser/User.jsx";
 const Post = (props) => {
     return (
         <Posts>
             <PostBody>
-                <User primary userAvatar={props.userAvatar} name={props.name}/>
+                <TweetUser primary userAvatar={props.userAvatar} name={props.name}/>
 
                 <div id="description">
                     <p>{props.text}</p>

@@ -7,6 +7,7 @@ import Home from './pages/Home/Home.jsx';
 import Profile from './pages/Profile/Profile.jsx';
 import NotFoundPage from './pages/NotFoundPage/NoutFoundPage.jsx';
 import Search from './pages/Search/Search.jsx';
+import Auth from './pages/Authentication/Auth.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "/auth",
+    element: <Auth/>
+  }
 ],
 
 )

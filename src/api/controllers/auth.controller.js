@@ -5,10 +5,9 @@ const LoginController = async (req, res) => {
     const {email, password} = req.body
 
     try {
-        const user = await authService.LoginService({email, password});
+        const token = await authService.LoginService({email, password});
 
-
-        return res.status(201).send(user);
+        return res.send(token);
     } catch (err) {
         res.status(500).send(err.message)
     }
