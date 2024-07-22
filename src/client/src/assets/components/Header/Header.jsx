@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaXTwitter, FaMessage, FaGear } from "react-icons/fa6";
 import { FaHome, FaSearch, FaUser } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
@@ -11,15 +11,17 @@ import AuthButton from "../AuthButton/AuthButton.jsx";
 import TweetButton from "../TweetButton/TweetButton.jsx";
 import TweetUser from "../TweetUser/User.jsx";
 import { userLogged } from "../../../services/userServices.js";
+import { UserContext } from "../../../Context/UserContent.jsx";
 
 export const Header = () => {
-  const [Users, SetUsers] = useState({});
+  const {user, setUser} = useContext(UserContext)
 
   const navigate = useNavigate()
+
   async function finduserLogged() {
     try {
       const response = await userLogged();
-      SetUsers(response.data);
+      setUser(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -27,7 +29,7 @@ export const Header = () => {
 
   function logout() {
     Cookies.remove("token");
-    SetUsers(undefined);
+    setUser(undefined);
     navigate("/auth");
   }
 
@@ -67,13 +69,13 @@ export const Header = () => {
           <span>Configurations</span>
         </Link>
 
-        {Users && Cookies.get("token") ? (
+        {user && Cookies.get("token") ? (
           <>
             <UserLogged>
               <TweetUser
                 secondary
-                userAvatar={Users.avatar}
-                name={Users.username}
+                userAvatar={user.avatar}
+                name={user.username}
               />
               <button id="logoutButton" onClick={logout}>
                 <IoIosLogOut/>

@@ -65,10 +65,10 @@ const SearchByTextController = async (req, res) => {
 };
 
 const FindTweetByUserController = async (req, res) => {
-  const { id } = req.params;
+  const userId = req.userId;
 
   try {
-    const Tweets = await TweetsService.FindTweetbyUserService(id);
+    const Tweets = await TweetsService.FindTweetbyUserService(userId);
 
     return res.send(Tweets);
   } catch (err) {

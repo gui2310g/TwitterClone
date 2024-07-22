@@ -13,7 +13,7 @@ router.use(authMiddleware)
 router.post("/create",  TweetsController.CreateTweetsController)
 
 router.use(validId)
-router.get("/byUserId/:id", TweetsController.FindTweetByUserController)
+router.get("/byUserId", TweetsController.FindTweetByUserController)
 router.get("/byIdTweets/:id", TweetsController.FindTweetByIdController)
 router.patch("/update/:id", TweetsController.UpdateTweetController)
 router.delete("/delete/:id", TweetsController.DeleteTweetsController)

@@ -19,7 +19,7 @@ export const Nav = styled.nav`
     @media (max-width: 1290px) {
         align-items: center;
 
-        span {
+        span, div {
           display: none;
         }
     }

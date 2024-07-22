@@ -1,55 +1,61 @@
 import styled from "styled-components";
 
 export const ProfilePage = styled.article`
-    color: black;
+  color: black;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid gray;
+`;
+export const ProfileHeader = styled.section`
+  display: flex;
+  align-items: center;
+  height: auto;
+  gap: 40px;
+  padding: 5px;
+
+  span {
+    font-size: 12px;
+  }
+
+  a:hover {
+    color: blue;
+    transition: 1s all;
+  }
+`;
+
+export const ProfileBody = styled.section`
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+
+  #user {
+    display: flex;
+    justify-content: space-between;
+  }
+
+   img {
     width: 100%;
-    max-width: 600px;
-    border: 1px solid gray;
+    max-width: 100%;
+    height: 200px;
+  }
 
-    #profile {
-        border-bottom: 1px solid black;
-        padding-bottom: 20px;
-    }
-    #profile-name {
-        border: 1px solid blue;
-        height: 50px
-    }
+  #userDescription {
+    display: flex;
+    flex-direction: column;
+    margin: -70px 0px 0px 17px;
+  }
 
-    #fds {
-        display: flex;
-        justify-content: space-between;
-    }
-    #profile img{
-        width: 100%;
-        max-width: 100%;
-        height: 200px;
-    }
+  #userDescription img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+  }
 
-    #profile #user {
-        display: flex;
-        flex-direction:column;
-        margin: -70px 0px 0px 17px;
-    }
-
-    #profile #user img {
-        width: 130px;
-        height: 130px;
-        object-fit: cover;
-        border-radius: 100px;
-        border: 2px solid black;
-    }
-
-    #profile #user img {
-        width: 130px;
-        height: 130px;
-        object-fit: cover;
-        border-radius: 100px;
-        border: 2px solid black;
-    }   
-
-    #followers {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-    }
-`
+  #followers {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+`;

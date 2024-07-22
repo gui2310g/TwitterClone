@@ -1,47 +1,47 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa6";
 
-import { ProfilePage } from "./ProfileStyled.jsx";
-
-import BackgroundImage from "../../assets/imgs/TwitterBackground.png";
-import BackgroundAvatar from "../../assets/imgs/defaultAvatar.png";
-import Post from "../../assets/components/Post/Post.jsx";
+import { ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
 import TweetButton from "../../assets/components/TweetButton/TweetButton.jsx";
-
-import { GetAllTweets } from "../../services/TweetsServices.js";
+import { UserContext } from "../../Context/UserContent.jsx";
+import { GetAllTweetsByUser } from "../../services/TweetsServices.js";
+import Post from "../../assets/components/Post/Post.jsx";
 
 const Profile = () => {
-    const [Tweets, setTweets] = useState([]);
+  const { user } = useContext(UserContext);
+  const [tweets, setTweets] = useState([]);
 
-    async function findAllTweets() {
-      try {
-          const response = await GetAllTweets();
-          setTweets(response.data.results);
-      } catch (error) {
-          setTweets([])
-      }
-    }
+  async function findAllTweetsByUser() {
+    const response = await GetAllTweetsByUser();
+    setTweets(response.data.TweetsByUser);
+  }
 
-    useEffect(() => {
-        findAllTweets()
-    }, [])
+  useEffect(() => {
+    findAllTweetsByUser();
+  }, []);
 
   return (
     <ProfilePage>
-      <section id="profile-name">
-        <p>Nome de Perfil</p>
-        <span>14 posts</span>
-      </section>
+      <ProfileHeader>
+        <Link to="/">
+          <FaArrowLeft />
+        </Link>
 
-      <section id="profile">
-        <div id="background">
-          <img src={BackgroundImage} alt="" />
+        <div id="userHeader">
+          <h3>{user.username}</h3>
+          <span>{tweets.length} posts</span>
         </div>
+      </ProfileHeader>
 
-        <div id="fds">
-          <div id="user">
-            <img src={BackgroundAvatar} alt="" />
-            <strong>The King Macho</strong>
-            <span>@Guilher45105997</span>
+      <ProfileBody>
+        <img src={user.background} alt="User background" id="imgbackground" />
+
+        <div id="user">
+          <div id="userDescription">
+            <img src={user.avatar} alt="User profile avatar" />
+            <strong>{user.username}</strong>
+            <span>@{user.username}</span>
 
             <div id="followers">
               <span>20 followers</span>
@@ -51,22 +51,22 @@ const Profile = () => {
 
           <TweetButton secondary text={"Edit Profile"} />
         </div>
-      </section>
+      </ProfileBody>
 
-      {
-        Tweets.map((user, index) => (
-          <Post 
-            primary
-            key={index.id}
-            name={user.username}
-            text={user.text}
-            userAvatar={user.userAvatar}
-            banner={user.banner}
-            likes={user.likes.length}
-            comments={user.comments.length}
-          />
-        ))
-      }
+      {tweets.length === 0 && <h2>This user doesn't have a tweet</h2>}
+      
+      {tweets.map((item) => (
+        <Post
+          primary
+          key={item.id}
+          name={item.username}
+          text={item.text}
+          userAvatar={item.userAvatar}
+          banner={item.banner}
+          likes={item.likes.length}
+          comments={item.comments.length}
+        />
+      ))}
     </ProfilePage>
   );
 };
