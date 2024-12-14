@@ -30,7 +30,7 @@ const Widgets = () => {
         {
           user.map((user) => {
             return (
-              <div id="users" key={user._id}>
+              <div id="users" key={user.id}>
                 <TweetUser secondary userAvatar={user.avatar} name={user.username} />
                 <TweetButton text={"Follow"} />
               </div>

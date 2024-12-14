@@ -21,8 +21,7 @@
         async function getSearchedTweets() {
             try {   
                 const response = await SearchedTweets(text)
-                setTweets(response.data.results) 
-                console.log(response)
+                setTweets(response.data) 
             } catch (error) {
                 setTweets([])
             }
@@ -80,8 +79,6 @@
                                 text={tweet.text}
                                 userAvatar={tweet.userAvatar}
                                 banner={tweet.banner}
-                                likes={tweet.likes.length}
-                                comments={tweet.comments.length}
                             />
                         ))
                     }

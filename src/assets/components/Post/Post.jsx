@@ -5,7 +5,7 @@ const Post = (props) => {
     return (
         <Posts>
             <PostBody>
-                <TweetUser primary userAvatar={props.userAvatar} name={props.name}/>
+            <TweetUser primary userAvatar={props.userAvatar} name={props.name}/>
 
                 <div id="description">
                     <p>{props.text}</p>
@@ -14,15 +14,9 @@ const Post = (props) => {
             </PostBody>
 
             <PostFooter>
-                <section>
-                    <FaHeart />
-                    <span>{props.likes}</span>
-                </section>
+                <section><FaHeart /></section>
 
-                <section>
-                    <FaComments />
-                    <span>{props.comments}</span>
-                </section>
+                <section><FaComments /></section>
             </PostFooter>
         </Posts>
     )

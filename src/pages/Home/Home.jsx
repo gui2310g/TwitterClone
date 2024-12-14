@@ -1,6 +1,6 @@
-import { useState, useEffect} from "react"; 
+import { useState, useEffect } from "react"; 
 
-import { Posts} from "./HomeStyled.jsx";
+import { Posts } from "./HomeStyled.jsx";
 import Post from "../../assets/components/Post/Post.jsx";
 import { GetAllTweets } from "../../services/TweetsServices.js";
 
@@ -10,9 +10,8 @@ const Home = () => {
 
   async function findAllTweets() {
     try {
-
       const response = await GetAllTweets();
-      setTweets(response.data.results);
+      setTweets(response.data);
     } catch (error) {
       setTweets([]);
     }
@@ -24,19 +23,17 @@ const Home = () => {
 
   return (
     <Posts>
-  
       {
-        Tweets.map((user, index) => (
+        Tweets.map((tweet) => (
           <Post
             primary
-            key={index.id}
-            name={user.username}
-            text={user.text}
-            userAvatar={user.userAvatar}
-            banner={user.banner}
-            likes={user.likes.length}
-            comments={user.comments.length}
+            key={tweet.id} 
+            name={tweet.username} 
+            text={tweet.text}
+            userAvatar={tweet.userAvatar} 
+            banner={tweet.banner}
           />
+
         ))
       }
     </Posts>
