@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
-import Header from './assets/components/Header/Header.jsx'
-import Widgets from './assets/components/widget/Widgets.jsx'
+import Header from './components/Header/Header.jsx'
+import Widgets from './components/widget/Widgets.jsx'
 import { GlobalStyled, Main } from './GlobalStyled.jsx'
 function App() {
 return (

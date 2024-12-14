@@ -3,10 +3,10 @@
     import { SearchPage } from "./SearchStyled.jsx"
     import { useParams } from "react-router-dom"
 
-    import Post from "../../assets/components/Post/Post.jsx"
-    import SearchForm from "../../assets/components/SearchInput/SearchInput.jsx"
-    import TweetButton from "../../assets/components/TweetButton/TweetButton.jsx"
-    import User from "../../assets/components/TweetUser/User.jsx"
+    import Post from "../../components/Post/Post.jsx"
+    import SearchForm from "../../components/SearchInput/SearchInput.jsx"
+    import TweetButton from "../../components/TweetButton/TweetButton.jsx"
+    import User from "../../components/TweetUser/User.jsx"
 
     import { SearchedTweets } from "../../services/TweetsServices.js"
     import { SearchedUsers } from "../../services/userServices.js"

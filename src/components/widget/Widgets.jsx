@@ -6,7 +6,7 @@ import SearchForm from "../SearchInput/SearchInput.jsx";
 import TweetUser from "../TweetUser/User.jsx";
 import TweetButton from "../TweetButton/TweetButton.jsx";
 
-import { GetAllUsers } from "../../../services/userServices.js";
+import { GetAllUsers } from "../../services/userServices.js";
 
 const Widgets = () => {
   const [user, setUsers] = useState([]);

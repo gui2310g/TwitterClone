@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import DefaultAvatar from "../assets/imgs/defaultAvatar.png"
-import defaultBackground from "../assets/imgs/TwitterBackground.png"
+import DefaultAvatar from "../assets/defaultAvatar.png"
+import defaultBackground from "../assets/TwitterBackground.png"
 
 const baseUrl = "http://localhost:8080/";
 

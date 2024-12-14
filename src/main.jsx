@@ -8,7 +8,7 @@ import Profile from "./pages/Profile/Profile.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import Search from "./pages/Search/Search.jsx";
 import Auth from "./pages/Authentication/Auth.jsx";
-import UserProvider from "./Context/UserContent.jsx";
+import UserProvider from "./contexts/UserContent.jsx";
 const router = createBrowserRouter([
   {
     path: "/",

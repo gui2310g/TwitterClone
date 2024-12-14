@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"; 
 
 import { Posts } from "./HomeStyled.jsx";
-import Post from "../../assets/components/Post/Post.jsx";
+import Post from "../../components/Post/Post.jsx";
 import { GetAllTweets } from "../../services/TweetsServices.js";
 
 

@@ -9,8 +9,8 @@ import Cookies from "js-cookie";
 import { Headers, Nav, UserLogged } from "./HeaderStyled.jsx";
 import AuthButton from "../AuthButton/AuthButton.jsx";
 import TweetUser from "../TweetUser/User.jsx";
-import { userLogged } from "../../../services/userServices.js";
-import { UserContext } from "../../../Context/UserContent.jsx";
+import { userLogged } from "../../services/userServices.js";
+import { UserContext } from "../../contexts/UserContent.jsx";
 
 
 export const Header = () => {

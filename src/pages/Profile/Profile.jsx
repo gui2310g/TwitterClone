@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
-import TweetButton from "../../assets/components/TweetButton/TweetButton.jsx";
-import { UserContext } from "../../Context/UserContent.jsx";
+import TweetButton from "../../components/TweetButton/TweetButton.jsx";
+import { UserContext } from "../../contexts/UserContent.jsx";
 import { GetAllTweetsByUser } from "../../services/TweetsServices.js";
-import Post from "../../assets/components/Post/Post.jsx";
+import Post from "../../components/Post/Post.jsx";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
