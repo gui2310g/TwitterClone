@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Cookies from "js-cookie";
-import toast from "react-hot-toast";
+import toast from 'react-hot-toast'
 
 import { AuthContainer, ErrorInput } from "./AuthStyled.jsx";
 
@@ -13,19 +11,20 @@ import AuthButton from "../../components/AuthButton/AuthButtonComponent.jsx";
 import { signinSchema } from "../../schemas/signinSchema.js";
 import { signupSchema } from "../../schemas/signupSchema.js";
 import { CreateAccount, LoginAccount } from "../../services/userServices.js";
+import { useFormHook } from "../../hooks/useFormHook.jsx";
 
 const Auth = () => {
   const {
     register: registerSignup,
     handleSubmit: handleSubmitSignup,
-    formState: { errors: errorsSignup },
-  } = useForm({ resolver: zodResolver(signupSchema) });
+    formState: errorsSignup,
+  } = useFormHook(signupSchema);
 
   const {
     register: registerSignin,
     handleSubmit: handleSubmitSignin,
-    formState: { errors: errorsSignin },
-  } = useForm({ resolver: zodResolver(signinSchema) });
+    formState: errorsSignin,
+  } = useFormHook(signinSchema);
 
   const navigate = useNavigate();
 
@@ -35,7 +34,7 @@ const Auth = () => {
       Cookies.set("token", response.data, { withCredentials: true });
       navigate("/");
     } catch {
-      toast.error("Email Still Exists");
+      toast.error('Email Still Exists')
     }
   }
 
@@ -45,7 +44,7 @@ const Auth = () => {
       Cookies.set("token", response.data, { withCredentials: true });
       navigate("/");
     } catch {
-      toast.error("Invalid email or password");
+      toast.error('Invalid email or password')
     }
   }
 

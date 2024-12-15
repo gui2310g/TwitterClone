@@ -1,28 +1,20 @@
 import { FaSearch } from "react-icons/fa";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 import { Search, Form, ErrorSpan } from "./SearchInputStyled.jsx";
 import { searchSchema } from "../../schemas/searchSchema.js";
+import { useFormHook } from "../../hooks/useFormHook.jsx";
 
 const SearchForm = () => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-      } = useForm({
-        resolver: zodResolver(searchSchema),
-      });
+  const { register, handleSubmit, reset, errors } = useFormHook(searchSchema)
     
-      const navigate = useNavigate();
+  const navigate = useNavigate();
     
-      const onSearch = (data) => {
-        const { text } = data;
-        navigate(`/search/${text}`);
-        reset();
-      }
+  const onSearch = (data) => {
+    const { text } = data;
+    navigate(`/search/${text}`);
+    reset();
+  }
+  
   return (
     <>
         <Search>
