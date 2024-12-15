@@ -1,24 +1,9 @@
-import { useState, useEffect } from "react";
-
 import { Posts } from "./HomeStyled.jsx";
 import Post from "../../components/Post/PostComponent.jsx";
-import { GetAllTweets } from "../../services/TweetsServices.js";
+import { useHome } from "./useHome.jsx";
 
 const Home = () => {
-  const [Tweets, setTweets] = useState([]);
-
-  async function findAllTweets() {
-    try {
-      const response = await GetAllTweets();
-      setTweets(response.data);
-    } catch (error) {
-      setTweets([]);
-    }
-  }
-
-  useEffect(() => {
-    findAllTweets();
-  }, []);
+  const { Tweets } = useHome();
 
   return (
     <Posts>
