@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Users = styled.div`
+export const TweetUser = styled.div`
   display: flex;
   flex-direction: row;
   margin: ${props => (props.secondary ? '10px' : '0px')};

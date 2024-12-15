@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Widget, FollowingWidget } from "./WidgetsStyled.jsx";
 
 import SearchForm from "../SearchInput/SearchFormComponent.jsx";
-import TweetUser from "../TweetUser/User.jsx";
-import TweetButton from "../TweetButton/TweetButton.jsx";
+import TweetUser from "../TweetUser/TweetUserComponent.jsx";
+import TweetButton from "../TweetButton/TweetButtonComponent.jsx";
 
 import { GetAllUsers } from "../../services/userServices.js";
 

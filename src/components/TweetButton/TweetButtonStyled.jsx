@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const TweetButton = styled.button`
     width: 100%;
     max-width: ${props => (props.primary ? '230px' : (props.secondary ? '100px' : '90px'))};
     height: ${props => (props.primary ? '50px' : '30px')};

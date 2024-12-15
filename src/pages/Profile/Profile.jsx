@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
-import TweetButton from "../../components/TweetButton/TweetButton.jsx";
+import TweetButton from "../../components/TweetButton/TweetButtonComponent.jsx";
 import { UserContext } from "../../contexts/UserContent.jsx";
 import { GetAllTweetsByUser } from "../../services/TweetsServices.js";
 import Post from "../../components/Post/PostComponent.jsx";
