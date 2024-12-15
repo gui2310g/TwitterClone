@@ -6,7 +6,7 @@ import { ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
 import TweetButton from "../../components/TweetButton/TweetButton.jsx";
 import { UserContext } from "../../contexts/UserContent.jsx";
 import { GetAllTweetsByUser } from "../../services/TweetsServices.js";
-import Post from "../../components/Post/Post.jsx";
+import Post from "../../components/Post/PostComponent.jsx";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -55,7 +55,7 @@ const Profile = () => {
       </ProfileBody>
 
       {tweets.length === 0 && <h2>This user doesnt have a tweet</h2>}
-      
+
       {tweets.map((item) => (
         <Post
           primary

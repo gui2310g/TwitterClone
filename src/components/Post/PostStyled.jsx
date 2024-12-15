@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Posts = styled.article`
+export const Post = styled.article`
   border-bottom: 1px solid lightgray;
   max-width: 600px;
 `;
+
 export const PostBody = styled.section`
   padding: 20px;
   

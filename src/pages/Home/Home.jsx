@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 
 import { Posts } from "./HomeStyled.jsx";
-import Post from "../../components/Post/Post.jsx";
+import Post from "../../components/Post/PostComponent.jsx";
 import { GetAllTweets } from "../../services/TweetsServices.js";
-
 
 const Home = () => {
   const [Tweets, setTweets] = useState([]);
@@ -23,21 +22,17 @@ const Home = () => {
 
   return (
     <Posts>
-      {
-        Tweets.map((tweet) => (
-          <Post
-            primary
-            key={tweet.id} 
-            name={tweet.username} 
-            text={tweet.text}
-            userAvatar={tweet.userAvatar} 
-            banner={tweet.banner}
-          />
-
-        ))
-      }
+      {Tweets.map((tweet) => (
+        <Post
+          primary
+          key={tweet.id}
+          name={tweet.username}
+          text={tweet.text}
+          userAvatar={tweet.userAvatar}
+          banner={tweet.banner}
+        />
+      ))}
     </Posts>
-    
   );
 };
 
