@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Header from './components/Header/HeaderComponent.jsx'
-import Widgets from './components/widget/Widgets.jsx'
+import Widget from './components/widget/WidgetComponent.jsx'
 import { GlobalStyled, Main } from './GlobalStyled.jsx'
 function App() {
 return (
@@ -9,7 +9,7 @@ return (
         <Main>
             <Header />
             <Outlet/>
-            <Widgets />
+            <Widget />
         </Main>
     </>
 )

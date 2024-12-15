@@ -1,24 +1,11 @@
-import { useEffect, useState } from "react";
-
-import { Widget, FollowingWidget } from "./WidgetsStyled.jsx";
-
+import { Widget, FollowingWidget } from "./WidgetStyled.jsx";
 import SearchForm from "../SearchInput/SearchFormComponent.jsx";
 import TweetUser from "../TweetUser/TweetUserComponent.jsx";
 import TweetButton from "../TweetButton/TweetButtonComponent.jsx";
-
-import { GetAllUsers } from "../../services/userServices.js";
+import { useWidget } from "./useWidget.jsx";
 
 const Widgets = () => {
-  const [user, setUsers] = useState([]);
-
-  async function findAllUsers() {
-    const response = await GetAllUsers();
-    setUsers(response.data);
-  }
-
-  useEffect(() => {
-    findAllUsers();
-  }, []);
+  const { user } = useWidget();
 
   return (
     <Widget>
