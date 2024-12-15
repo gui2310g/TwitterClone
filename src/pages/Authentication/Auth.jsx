@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import { AuthContainer, ErrorInput } from "./AuthStyled.jsx";
 
 import TwitterLogo from "../../assets/twitter-logo.png";
-import Input from "../../components/Input/Input.jsx";
+import Input from "../../components/Input/InputComponent.jsx";
 import AuthButton from "../../components/AuthButton/AuthButton.jsx";
 
 import { signinSchema } from "../../schemas/signinSchema.js";
