@@ -10,8 +10,6 @@ export const AuthContainer = styled.article`
     left: 50%;
     gap: 200px;
     
-    border: 1px solid red;
-
     img {
         width: 100%;
         max-width: 300px;

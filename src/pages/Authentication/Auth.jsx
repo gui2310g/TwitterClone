@@ -1,7 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import toast from 'react-hot-toast'
-
 import { AuthContainer, ErrorInput } from "./AuthStyled.jsx";
 
 import TwitterLogo from "../../assets/twitter-logo.png";
@@ -10,8 +6,8 @@ import AuthButton from "../../components/AuthButton/AuthButtonComponent.jsx";
 
 import { signinSchema } from "../../schemas/signinSchema.js";
 import { signupSchema } from "../../schemas/signupSchema.js";
-import { CreateAccount, LoginAccount } from "../../services/userServices.js";
 import { useFormHook } from "../../hooks/useFormHook.jsx";
+import { useAuth } from "./useAuth.jsx";
 
 const Auth = () => {
   const {
@@ -26,27 +22,7 @@ const Auth = () => {
     errors: errorsSignin,
   } = useFormHook(signinSchema);
 
-  const navigate = useNavigate();
-
-  async function inSubmit(data) {
-    try {
-      const response = await CreateAccount(data);
-      Cookies.set("token", response.data, { withCredentials: true });
-      navigate("/");
-    } catch {
-      toast.error('Email Still Exists')
-    }
-  }
-
-  async function InAuth(data) {
-    try {
-      const response = await LoginAccount(data);
-      Cookies.set("token", response.data, { withCredentials: true });
-      navigate("/");
-    } catch {
-      toast.error('Invalid email or password')
-    }
-  }
+  const { inSubmit, InAuth } = useAuth();
 
   return (
     <AuthContainer>
@@ -97,7 +73,7 @@ const Auth = () => {
               <ErrorInput>{errorsSignup.confirmPassword.message}</ErrorInput>
             )}
 
-            <AuthButton type="submit">Sign up</AuthButton>
+            <AuthButton type="submit" text="Sign up" />
           </form>
         </div>
 
@@ -125,7 +101,7 @@ const Auth = () => {
               <ErrorInput>{errorsSignin.password.message}</ErrorInput>
             )}
 
-            <AuthButton type="submit">Sign in</AuthButton>
+            <AuthButton type="submit" text="Sign in" />
           </form>
         </div>
       </section>
