@@ -54,7 +54,7 @@ const Profile = () => {
         </div>
       </ProfileBody>
 
-      {tweets.length === 0 && <h2>This user doesn't have a tweet</h2>}
+      {tweets.length === 0 && <h2>This user doesnt have a tweet</h2>}
       
       {tweets.map((item) => (
         <Post

@@ -1,44 +1,18 @@
-import { useContext, useEffect, useState } from "react";
 import { FaXTwitter, FaMessage, FaGear } from "react-icons/fa6";
 import { FaHome, FaSearch, FaUser } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-
-import { Headers, Nav, UserLogged } from "./HeaderStyled.jsx";
+import { Header, Nav, UserLogged } from "./HeaderStyled.jsx";
 import AuthButton from "../AuthButton/AuthButton.jsx";
 import TweetUser from "../TweetUser/User.jsx";
-import { userLogged } from "../../services/userServices.js";
-import { UserContext } from "../../contexts/UserContent.jsx";
+import { useHeader } from "./useHeader.jsx";
 
-
-export const Header = () => {
-  const { user, setUser } = useContext(UserContext);
-  
-  const navigate = useNavigate();
-
-  async function finduserLogged() {
-    try {
-      const response = await userLogged();
-      setUser(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  function logout() {
-    Cookies.remove("token", { withCredentials: true });
-    setUser(undefined);
-    navigate("/auth");
-  }
-
-  useEffect(() => {
-    if (Cookies.get("token", { withCredentials: true })) finduserLogged();
-  }, []);
+const HeaderComponent = () => {
+  const { user, logout } = useHeader();
 
   return (
-    <Headers>
+    <Header>
       <Nav>
         <Link to="/" id="Logo">
           <FaXTwitter />
@@ -88,8 +62,8 @@ export const Header = () => {
           </Link>
         )}
       </Nav>
-    </Headers>
+    </Header>
   );
 };
 
-export default Header;
+export default HeaderComponent;
