@@ -17,13 +17,13 @@ const Auth = () => {
   const {
     register: registerSignup,
     handleSubmit: handleSubmitSignup,
-    formState: errorsSignup,
+    errors: errorsSignup,
   } = useFormHook(signupSchema);
 
   const {
     register: registerSignin,
     handleSubmit: handleSubmitSignin,
-    formState: errorsSignin,
+    errors: errorsSignin,
   } = useFormHook(signinSchema);
 
   const navigate = useNavigate();

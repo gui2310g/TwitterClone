@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Widget, FollowingWidget } from "./WidgetsStyled.jsx";
 
-import SearchForm from "../SearchInput/SearchInput.jsx";
+import SearchForm from "../SearchInput/SearchFormComponent.jsx";
 import TweetUser from "../TweetUser/User.jsx";
 import TweetButton from "../TweetButton/TweetButton.jsx";
 
@@ -23,20 +23,22 @@ const Widgets = () => {
   return (
     <Widget>
       <SearchForm />
-    
+
       <FollowingWidget>
         <h2>Who Follows?</h2>
 
-        {
-          user.map((user) => {
-            return (
-              <div id="users" key={user.id}>
-                <TweetUser secondary userAvatar={user.avatar} name={user.username} />
-                <TweetButton text={"Follow"} />
-              </div>
-            );
-          })
-        }
+        {user.map((user) => {
+          return (
+            <div id="users" key={user.id}>
+              <TweetUser
+                secondary
+                userAvatar={user.avatar}
+                name={user.username}
+              />
+              <TweetButton text={"Follow"} />
+            </div>
+          );
+        })}
       </FollowingWidget>
     </Widget>
   );

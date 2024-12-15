@@ -4,7 +4,7 @@ import { SearchPage } from "./SearchStyled.jsx";
 import { useParams } from "react-router-dom";
 
 import Post from "../../components/Post/PostComponent.jsx";
-import SearchForm from "../../components/SearchInput/SearchInput.jsx";
+import SearchForm from "../../components/SearchInput/SearchFormComponent.jsx";
 import TweetButton from "../../components/TweetButton/TweetButton.jsx";
 import User from "../../components/TweetUser/User.jsx";
 

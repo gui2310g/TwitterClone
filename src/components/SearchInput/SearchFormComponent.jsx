@@ -1,19 +1,13 @@
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { Search, Form, ErrorSpan } from "./SearchInputStyled.jsx";
 import { searchSchema } from "../../schemas/searchSchema.js";
 import { useFormHook } from "../../hooks/useFormHook.jsx";
+import { useSearchForm } from "./useSearchForm.jsx";
 
-const SearchForm = () => {
+const SearchFormComponent = () => {
   const { register, handleSubmit, reset, errors } = useFormHook(searchSchema)
     
-  const navigate = useNavigate();
-    
-  const onSearch = (data) => {
-    const { text } = data;
-    navigate(`/search/${text}`);
-    reset();
-  }
+  const { onSearch } = useSearchForm(reset);
   
   return (
     <>
@@ -29,4 +23,4 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm
+export default SearchFormComponent
