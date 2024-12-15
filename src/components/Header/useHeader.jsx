@@ -26,7 +26,7 @@ export const useHeader = () => {
 
     useEffect(() => {
         if (Cookies.get("token", { withCredentials: true })) finduserLogged();
-    }, [])
+    })
 
     return { user, logout };
 }

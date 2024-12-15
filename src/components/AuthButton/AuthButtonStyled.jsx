@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const AuthButton = styled.button`
     height: 30px;
     border-radius: 20px;
     width: 100%;

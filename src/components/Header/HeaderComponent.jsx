@@ -4,7 +4,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Header, Nav, UserLogged } from "./HeaderStyled.jsx";
-import AuthButton from "../AuthButton/AuthButton.jsx";
+import AuthButton from "../AuthButton/AuthButtonComponent.jsx";
 import TweetUser from "../TweetUser/User.jsx";
 import { useHeader } from "./useHeader.jsx";
 
