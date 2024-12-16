@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
+
   @media (max-width: 550px) {
     background-color: black;
     position: fixed;

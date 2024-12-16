@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const TweetUserComponent = ({primary, secondary, userAvatar, name}) => {
     return (
-        <TweetUser primary={primary} secondary={secondary}>
+        <TweetUser $primary={primary} $secondary={secondary}>
             <img src={userAvatar} alt="user Avatar" id="userphoto"/>  
             
             <div id="username">

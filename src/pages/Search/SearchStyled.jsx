@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SearchPage = styled.article`
-    border: 1px solid red;
+    border-left: 1px solid red;
     width: 600px;
     padding: 5px;
     

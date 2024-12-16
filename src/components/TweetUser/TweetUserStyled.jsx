@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const TweetUser = styled.div`
   display: flex;
   flex-direction: row;
-  margin: ${props => (props.secondary ? '10px' : '0px')};
+  margin: ${(props) => (props.$secondary ? '10px' : '0px')};
   gap: 10px;
-  align-items: ${props => (props.secondary ? 'center' : '')};
+  align-items: ${(props) => (props.$secondary ? 'center' : '')};
   
   img {
     width: 50px;
@@ -15,7 +15,7 @@ export const TweetUser = styled.div`
   }
 
   #username {
-    display: ${props => (props.secondary ? 'block' : 'flex')};
+    display: ${(props) => (props.$secondary ? 'block' : 'flex')};
     gap: 5px;
   }
   
