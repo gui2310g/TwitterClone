@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-
 import { SearchPage } from "./SearchStyled.jsx";
 import { useParams } from "react-router-dom";
-
 import Post from "../../components/Post/PostComponent.jsx";
 import SearchForm from "../../components/SearchInput/SearchFormComponent.jsx";
 import TweetButton from "../../components/TweetButton/TweetButtonComponent.jsx";
 import User from "../../components/TweetUser/TweetUserComponent.jsx";
-
 import { SearchedTweets } from "../../services/TweetsServices.js";
 import { SearchedUsers } from "../../services/userServices.js";
 

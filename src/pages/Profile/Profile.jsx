@@ -1,27 +1,14 @@
-import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
 import TweetButton from "../../components/TweetButton/TweetButtonComponent.jsx";
-import { UserContext } from "../../contexts/UserContent.jsx";
-import { GetAllTweetsByUser } from "../../services/TweetsServices.js";
 import Post from "../../components/Post/PostComponent.jsx";
+import { useProfile } from "./useProfile.jsx";
 
 const Profile = () => {
-  const { user } = useContext(UserContext);
-
-  const [tweets, setTweets] = useState([]);
-
-  async function findAllTweetsByUser() {
-    const response = await GetAllTweetsByUser();
-    setTweets(response.data.TweetsByUser);
-  }
-
-  useEffect(() => {
-    findAllTweetsByUser();
-  }, []);
-
+  const { user, tweets } = useProfile();
+  
   return (
     <ProfilePage>
       <ProfileHeader>
