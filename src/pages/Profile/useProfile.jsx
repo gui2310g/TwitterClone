@@ -9,7 +9,7 @@ export const useProfile = () => {
 
     async function findAllTweetsByUser() {
         const response = await GetAllTweetsByUser();
-        setTweets(response.data.TweetsByUser);
+        setTweets(response.data);
     }
 
     useEffect(() => {

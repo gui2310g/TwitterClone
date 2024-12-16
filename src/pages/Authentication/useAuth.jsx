@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { CreateAccount, LoginAccount } from "../../services/userServices.js";
 import Cookies from "js-cookie";
-import toast from 'react-hot-toast'
 
 export const useAuth = () => {
     const navigate = useNavigate();
@@ -11,8 +10,8 @@ export const useAuth = () => {
           const response = await CreateAccount(data);
           Cookies.set("token", response.data, { withCredentials: true });
           navigate("/");
-        } catch {
-          toast.error('Email Still Exists')
+        } catch (error){
+          console.log(error)
         }
     }
     
@@ -21,8 +20,8 @@ export const useAuth = () => {
           const response = await LoginAccount(data);
           Cookies.set("token", response.data, { withCredentials: true });
           navigate("/");
-        } catch {
-          toast.error('Invalid email or password')
+        } catch (error){
+          console.log(error)
         }
     }
 

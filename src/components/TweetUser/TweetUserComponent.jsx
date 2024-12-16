@@ -17,8 +17,8 @@ const TweetUserComponent = ({primary, secondary, userAvatar, name}) => {
 TweetUserComponent.propTypes = {
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
-    userAvatar: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
+    userAvatar: PropTypes.string,
+    name: PropTypes.string
 }
 
 export default TweetUserComponent;

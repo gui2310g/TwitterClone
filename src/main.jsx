@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
 import App from "./App.jsx";
 import Home from "./pages/Home/Home.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
@@ -42,7 +41,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
-      <Toaster position="top-center" reverseOrder={false} />
       <RouterProvider router={router} />
     </UserProvider>
   </React.StrictMode>

@@ -27,8 +27,13 @@ export const LoginAccount = (data) => {
     return response;
 }
 
+export const findUserById = (id) => {
+  const response = axios.get(`${baseUrl}users/findById/${id}`)
+  return response;
+}
+
 export function userLogged() {
-  const response = axios.get(`${baseUrl}users/findById/`, {
+  const response = axios.get(`${baseUrl}users/findByAuth`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`
     }
