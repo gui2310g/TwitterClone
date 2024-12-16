@@ -2,7 +2,7 @@ import { TweetButton } from "./TweetButtonStyled.jsx";
 import PropTypes from "prop-types";
 const TweetButtonComponent = ({primary, secondary, text}) => {
   return (
-    <TweetButton primary={primary} secondary={secondary}>
+    <TweetButton $primary={primary} $secondary={secondary}>
       {text}
     </TweetButton>
   );

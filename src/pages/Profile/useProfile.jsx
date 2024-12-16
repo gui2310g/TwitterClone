@@ -1,6 +1,7 @@
 import { UserContext } from "../../contexts/UserContent.jsx";
-import { GetAllTweetsByUser } from "../../services/TweetsServices.js";
+import { GetAllTweetsByUserId, GetAllTweetsByUserLogged } from "../../services/TweetsServices.js";
 import { useContext, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 export const useProfile = () => {
     const { user } = useContext(UserContext);
@@ -8,12 +9,29 @@ export const useProfile = () => {
     const [tweets, setTweets] = useState([]);
 
     async function findAllTweetsByUser() {
-        const response = await GetAllTweetsByUser();
-        setTweets(response.data);
+        try {
+            const response = await GetAllTweetsByUserId();
+            setTweets(response.data);  
+        } catch (err) {
+            console.error(err)
+        }  
+    } 
+    
+    async function findAllTweetsByUserLogged() {
+        try {
+            const response = await GetAllTweetsByUserLogged();
+            setTweets(response.data);  
+        } catch (err) {
+              console.error(err)
+        }  
     }
 
     useEffect(() => {
-        findAllTweetsByUser();
+        if (Cookies.get("token", { withCredentials: true })) {
+          findAllTweetsByUserLogged();  
+        } else {
+          findAllTweetsByUser(); 
+        }
     }, []);
 
     return { user, tweets };

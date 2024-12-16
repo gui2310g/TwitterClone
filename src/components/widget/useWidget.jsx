@@ -5,8 +5,12 @@ export const useWidget = () => {
     const [user, setUsers] = useState([]);
 
     async function findAllUsers() {
-        const response = await GetAllUsers();
-        setUsers(response.data);
+        try {
+            const response = await GetAllUsers();
+            setUsers(response.data);  
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     useEffect(() => {

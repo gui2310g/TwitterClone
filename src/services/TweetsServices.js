@@ -25,8 +25,13 @@ export const SearchedTweets = (text) => {
   return response;
 }
 
-export const GetAllTweetsByUser = () => {
-  const response = axios.get(`${baseUrl}tweets/findByUser`, {
+export const GetAllTweetsByUserId = (id) => {
+  const response = axios.get(`${baseUrl}tweets/findByUserId/${id}`)
+  return response;
+}
+
+export const GetAllTweetsByUserLogged = () => {
+  const response = axios.get(`${baseUrl}tweets/findByAuth`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`
     }

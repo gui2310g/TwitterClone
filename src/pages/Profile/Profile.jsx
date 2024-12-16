@@ -51,8 +51,6 @@ const Profile = () => {
           text={item.text}
           userAvatar={item.userAvatar}
           banner={item.banner}
-          likes={item.likes.length}
-          comments={item.comments.length}
         />
       ))}
     </ProfilePage>
