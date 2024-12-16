@@ -1,48 +1,13 @@
-import { useState, useEffect } from "react";
 import { SearchPage } from "./SearchStyled.jsx";
-import { useParams } from "react-router-dom";
 import Post from "../../components/Post/PostComponent.jsx";
 import SearchForm from "../../components/SearchInput/SearchFormComponent.jsx";
 import TweetButton from "../../components/TweetButton/TweetButtonComponent.jsx";
 import User from "../../components/TweetUser/TweetUserComponent.jsx";
-import { SearchedTweets } from "../../services/TweetsServices.js";
-import { SearchedUsers } from "../../services/userServices.js";
+import { useSearch } from "./useSearch.jsx";
 
 const Search = () => {
-  const { text } = useParams();
-
-  const [Tweets, setTweets] = useState([]);
-  const [Users, setUsers] = useState([]);
-  const [active, setActive] = useState("Tweets");
-
-  async function getSearchedTweets() {
-    try {
-      const response = await SearchedTweets(text);
-      setTweets(response.data);
-    } catch (error) {
-      setTweets([]);
-    }
-  }
-
-  async function getSearchedUsers() {
-    try {
-      const response = await SearchedUsers(text);
-      setUsers(response.data);
-    } catch (error) {
-      setUsers([]);
-    }
-  }
-  useEffect(() => {
-    getSearchedTweets();
-    getSearchedUsers();
-  }, [text]);
-
-  const SearchTypes = ["Tweets", "Users"];
-
-  const handleTabClick = (tab) => {
-    setActive(tab);
-  };
-
+  const { Tweets, Users, active, SearchTypes, handleTabClick } = useSearch();
+  
   return (
     <SearchPage>
       <SearchForm />
