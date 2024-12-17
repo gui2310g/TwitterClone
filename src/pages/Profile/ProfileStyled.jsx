@@ -36,6 +36,7 @@ export const ProfileBody = styled.section`
     width: 100%;
     max-width: 100%;
     height: 200px;
+    object-fit: cover;
   }
 
   #userDescription {
@@ -47,7 +48,7 @@ export const ProfileBody = styled.section`
   #userDescription img {
     width: 130px;
     height: 130px;
-    object-fit: cover;
+    background-color: white;
     border-radius: 100px;
     border: 2px solid black;
     margin-bottom: 10px;

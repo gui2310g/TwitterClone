@@ -26,7 +26,7 @@ export const SearchedTweets = (text) => {
 }
 
 export const GetAllTweetsByUserId = (id) => {
-  const response = axios.get(`${baseUrl}tweets/findByUserId/${id}`)
+  const response = axios.get(`${baseUrl}tweets/findByUser/${id}`)
   return response;
 }
 
