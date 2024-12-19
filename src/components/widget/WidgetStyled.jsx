@@ -20,4 +20,9 @@ export const FollowingWidget = styled.div`
         align-items: center;
         justify-content: space-between;
     }
+
+    #users a {
+        text-decoration: none;
+        color: black;
+    }
 `

@@ -8,6 +8,11 @@ export const Post = styled.article`
 export const PostBody = styled.section`
   padding: 20px;
   
+  a {
+    text-decoration: none;
+    color: black;
+  }
+    
   #description {
     margin: -25px 20px 0px 57px;
     text-align: left;

@@ -10,6 +10,7 @@ const Home = () => {
       {Tweets.map((tweet) => (
         <Post
           primary
+          id={tweet.userId}
           key={tweet.id}
           name={tweet.username}
           text={tweet.text}
