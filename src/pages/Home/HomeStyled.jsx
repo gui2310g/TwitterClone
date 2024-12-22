@@ -5,31 +5,50 @@ export const Posts = styled.section`
     border: 1px solid gray;
     max-width: 600px;
 `
-export const TweetBox = styled.div`
+export const PostCreate = styled.form`
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
     padding-bottom: 10px;
-    padding-right: 10px;
-    border-bottom: 2px solid lightgray;
-
-    img {
-        border-radius: 50%;
-        height: 40px;
-    }
-
-    .TweetBoxInput {
-        display: flex;  
-        gap: 20px;
-        padding: 20px;
-        width: 250px;
-    }
-
-    .TweetBoxInput input {
-        font-size: 20px;
-        border: none;
-        outline: none;
-    }
-
-    .TweetBoxButton {
-       display: flex;
-       justify-content: space-between;
-    }
 `
+export const PostHeader = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+
+    h2 { text-align: center; }
+    textarea {
+        resize: none;
+        height: 50px;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    label {
+        text-align: left;
+    }
+    input[type="url"] {
+        width: 100%;
+        max-width: 500px;
+        height: 20px;
+    }
+
+    input[type="submit"] {
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+    
+        background-color: #1c9df0;
+        color: white;
+    } 
+
+    #submit { cursor: pointer;}
+`
+

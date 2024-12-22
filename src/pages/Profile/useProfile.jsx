@@ -9,6 +9,7 @@ export const useProfile = () => {
     const { user, setUser, viewedUser, setViewedUser } = useContext(UserContext);
     const [tweets, setTweets] = useState([]);
     const { id } = useParams();
+    const [modal, setModal] = useState(false);
 
     async function fetchProfile() {
         try {
@@ -33,5 +34,5 @@ export const useProfile = () => {
         fetchProfile();
     }, [id]);
 
-    return { viewedUser, tweets, user };
+    return { viewedUser, tweets, user, modal, setModal };
 };

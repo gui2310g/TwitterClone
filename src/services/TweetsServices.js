@@ -3,17 +3,15 @@ import Cookies from "js-cookie";
 
 const baseUrl = "http://localhost:8080/";
 
-export const CreateTweets = (body) => {
-  const response = axios.post(`${baseUrl}tweets`, body, {
+export const CreateTweets = async (data) => {
+  const response = await axios.post(`${baseUrl}tweets`, data, {
     headers: {
-      Authorization: `Bearer ${Cookies.get("token")}`,
-      "Content-Type": "multipart/form-data"
+      Authorization: `Bearer ${Cookies.get("token")}`
     }
   },
-  { withCredentials: true }
-  )
+  { withCredentials: true });
   return response;
-}
+};
 
 export const GetAllTweets = () => {
   const response = axios.get(`${baseUrl}tweets/findAll`)

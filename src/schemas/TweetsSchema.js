@@ -1,8 +1,10 @@
 import { z } from "zod";
 
+
 export const TweetsSchema = z.object({
-    banner: z.instanceof(File).optional(),
-    text: z.string().optional()
-}).refine(data => data.banner || data.text, {
-    message: "Can't submit a tweet without at least one banner or one text"
-});
+  banner: z.string().url("Invalid Url").optional(),
+  text: z.string().max(280, "Text cannot exceed 280 characters").optional(),
+}).refine(
+  (data) => data.banner || data.text,
+  { message: "You must provide at least a text or a banner." }
+);

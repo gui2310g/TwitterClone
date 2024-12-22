@@ -15,7 +15,7 @@ const PostComponent = ({ userAvatar, name, text, banner, id }) => {
         
         <div id="description">
           <p>{text}</p>
-          <img src={banner} alt="image post" />
+          {banner && <img src={banner} alt="image post" />}
         </div>
       </PostBody>
 

@@ -1,8 +1,8 @@
 import { TweetButton } from "./TweetButtonStyled.jsx";
 import PropTypes from "prop-types";
-const TweetButtonComponent = ({primary, secondary, text}) => {
+const TweetButtonComponent = ({primary, secondary, text, onClick}) => {
   return (
-    <TweetButton $primary={primary} $secondary={secondary}>
+    <TweetButton $primary={primary} $secondary={secondary} onClick={onClick}>
       {text}
     </TweetButton>
   );
@@ -11,7 +11,8 @@ const TweetButtonComponent = ({primary, secondary, text}) => {
 TweetButtonComponent.propTypes = {
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 }
 
 export default TweetButtonComponent;

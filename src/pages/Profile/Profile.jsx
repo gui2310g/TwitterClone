@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
-import { ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
+import { Modal, ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
 import TweetButton from "../../components/TweetButton/TweetButtonComponent.jsx";
 import Post from "../../components/Post/PostComponent.jsx";
 import { useProfile } from "./useProfile.jsx";
 import Cookies from "js-cookie";
-
+import { createPortal } from "react-dom";
 const Profile = () => {
-  const { viewedUser, tweets, user } = useProfile();
+  const { viewedUser, tweets, user, modal, setModal } = useProfile();
 
   const isOwnProfile = Cookies.get("token") && viewedUser.id === user.id;
 
@@ -24,7 +24,11 @@ const Profile = () => {
       </ProfileHeader>
 
       <ProfileBody>
-        <img src={viewedUser.background} alt="User background" id="imgbackground" />
+        <img
+          src={viewedUser.background}
+          alt="User background"
+          id="imgbackground"
+        />
         <div id="user">
           <div id="userDescription">
             <img src={viewedUser.avatar} alt="User profile avatar" />
@@ -36,7 +40,31 @@ const Profile = () => {
             </div>
           </div>
           {isOwnProfile ? (
-            <TweetButton secondary text={"Edit Profile"} />
+            <>
+              <TweetButton
+                onClick={() => setModal(true)}
+                secondary
+                text={"Edit Profile"}
+              />
+              {modal &&
+                createPortal(
+                  <Modal>
+                    <div
+                      className="modal-backdrop"
+                      onClick={() => setModal(false)}
+                    >
+                      <div
+                        className="modal-content"
+                        onClick={(e) => e.stopPropagation()} 
+                      >
+                        <h2>Edit Profile</h2>
+                        <button onClick={() => setModal(false)}>Close</button>
+                      </div>
+                    </div>
+                  </Modal>,
+                  document.body
+                )}
+            </>
           ) : (
             <TweetButton text={"Follow"} />
           )}
@@ -49,6 +77,7 @@ const Profile = () => {
         <Post
           primary
           key={item.id}
+          id={item.userId}
           name={item.username}
           text={item.text}
           userAvatar={item.userAvatar}
