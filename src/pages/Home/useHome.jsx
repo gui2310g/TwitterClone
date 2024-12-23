@@ -1,32 +1,29 @@
 import { useState, useEffect } from "react";
 import { CreateTweets, GetAllTweets } from "../../services/TweetsServices";
+import { fetchData } from "../../utils/fetchData";
 
-export const useHome = () => {
+export const useHome = (reset) => {
   const [Tweets, setTweets] = useState([]);
 
   async function findAllTweets() {
-    try {
-      const response = await GetAllTweets();
-      setTweets(response.data);
-    } catch (error) {
-      console.error("Error fetching tweets", error);
-      setTweets([]);
-    }
+    await fetchData(
+      () => GetAllTweets(),
+      (response) => setTweets(response.data),
+      () => setTweets([])
+    )
   }
-
+  
   async function createTweet(data) {
-    try {
-      const response = await CreateTweets(data);
-      setTweets((prev) => [response.data, ...prev]);
-    } catch (error) {
-      console.error("Error creating tweet", error);
-    }
+    await fetchData(
+      () => CreateTweets(data),
+      (response) => setTweets((prev) => [response.data, ...prev]),
+    )
   }
-
-  const onSubmit = async (data, reset) => {
+  
+  async function onSubmit(data) {
     await createTweet(data);
     reset();
-  };
+  }
 
   useEffect(() => {
     findAllTweets();

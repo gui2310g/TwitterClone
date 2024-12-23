@@ -7,13 +7,14 @@ import { useFormHook } from "../../hooks/useFormHook.jsx";
 import { TweetsSchema } from "../../schemas/TweetsSchema.js";
 
 const Home = () => {
-  const { Tweets, onSubmit } = useHome();
   const { user } = useContext(UserContext);
   const { 
     register: registerPost, 
     handleSubmit: handlePost,
+    reset,
     errors: errorsPost
     } = useFormHook(TweetsSchema);
+  const { Tweets, onSubmit } = useHome(reset);
 
   return (
     <Posts>
@@ -28,7 +29,8 @@ const Home = () => {
           
           <label htmlFor="url">Image URL:</label>
           <input
-            type="url"
+            type="text"
+            id="url"
             placeholder="Insert an image link here"
             {...registerPost("banner")}
           />

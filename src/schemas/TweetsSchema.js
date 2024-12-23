@@ -1,8 +1,7 @@
 import { z } from "zod";
 
-
 export const TweetsSchema = z.object({
-  banner: z.string().url("Invalid Url").optional(),
+  banner: z.string().optional(),
   text: z.string().max(280, "Text cannot exceed 280 characters").optional(),
 }).refine(
   (data) => data.banner || data.text,
