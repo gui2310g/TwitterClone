@@ -1,9 +1,8 @@
 import styled from "styled-components";
-
+import { widthHeight } from "../../utils/widthHeightStyled.jsx"
 export const AuthButton = styled.button`
-    height: 30px;
+    ${widthHeight("100%", "100%", "30px", "30")}
     border-radius: 20px;
-    width: 100%;
     color: white;
     border: none;
     cursor: pointer;

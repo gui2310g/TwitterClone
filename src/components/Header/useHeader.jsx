@@ -3,21 +3,16 @@ import { useEffect, useContext } from "react";
 import Cookies from "js-cookie";
 import { UserContext } from "../../contexts/UserContent.jsx";
 import { userLogged } from "../../services/userServices.js";
+import { fetchData } from "../../utils/fetchData.jsx";
 
 export const useHeader = () => {
     const { user, setUser } = useContext(UserContext);
-
     const navigate = useNavigate();
 
     async function finduserLogged() {
-        try {
-            const response = await userLogged();
-            setUser(response.data);
-        } catch (error) {
-            console.log(error);
-        }
+        await fetchData(() => userLogged(), (response) => setUser(response.data))
     }
-
+    
     function logout() {
         Cookies.remove("token", { withCredentials: true });
         setUser(undefined);
