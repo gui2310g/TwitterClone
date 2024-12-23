@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { flex } from "../../utils/flexStyled.jsx";
+import { widthHeight } from "../../utils/widthHeightStyled.jsx";
 
 export const Post = styled.article`
   border-bottom: 1px solid lightgray;
@@ -15,29 +17,25 @@ export const PostBody = styled.section`
     
   #description {
     margin: -25px 20px 0px 57px;
-    text-align: left;
-  
-  }
+    text-align: justify;
+    word-wrap: break-word; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 
-  #description img {
-    margin-top: 10px;
-    width: 100%;
-    max-height: 520px;
-    border-radius: 20px;
-    text-align: center;
-  
+    img {
+      ${widthHeight("100%", "100%", "100%", "520")}
+      margin-top: 10px;
+      border-radius: 20px;
+      object-fit: contain;
+    }
   }
 `;
 
 export const PostFooter = styled.section`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  ${flex("none", "none", "center", "15")}
 
   section {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    ${flex("none", "none", "center", "0.5")}
     margin: 15px 0px 10px 60px;
   }
 `;
