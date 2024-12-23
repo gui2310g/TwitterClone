@@ -1,0 +1,7 @@
+export const flex = (direction, justify, align, gap) => `
+    display: flex;
+    flex-direction: ${direction};
+    justify-content: ${justify};
+    align-items: ${align};
+    gap: ${gap}px;
+`

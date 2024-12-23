@@ -1,18 +1,36 @@
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Modal, ProfileBody, ProfileHeader, ProfilePage } from "./ProfileStyled.jsx";
+import Cookies from "js-cookie";
+
+import { useProfile } from "./useProfile.jsx";
+import { 
+  Modal, 
+  ModalContent, 
+  ProfileBody,
+  ProfileHeader,
+  ProfilePage, 
+  Overlay 
+} from "./ProfileStyled.jsx";
+
 import TweetButton from "../../components/TweetButton/TweetButtonComponent.jsx";
 import Post from "../../components/Post/PostComponent.jsx";
-import { useProfile } from "./useProfile.jsx";
-import Cookies from "js-cookie";
-import { createPortal } from "react-dom";
+import { useFormHook } from "../../hooks/useFormHook.jsx";
+import { UserSchema } from "../../schemas/UserSchema.js";
+
 const Profile = () => {
-  const { viewedUser, tweets, user, modal, setModal } = useProfile();
-
+  const { 
+    register: registerUser, 
+    handleSubmit: handleUser,
+    reset,
+    errors: errorsUser
+  } = useFormHook(UserSchema); 
+  const { viewedUser, tweets, user, modal, setModal, onSubmit } = useProfile(reset);
   const isOwnProfile = Cookies.get("token") && viewedUser.id === user.id;
-
+  
   return (
     <ProfilePage>
+      {modal && <Overlay $isVisible={modal} />}
       <ProfileHeader>
         <Link to="/">
           <FaArrowLeft />
@@ -49,19 +67,35 @@ const Profile = () => {
               {modal &&
                 createPortal(
                   <Modal>
-                    <div
-                      className="modal-backdrop"
-                      onClick={() => setModal(false)}
-                    >
-                      <div
-                        className="modal-content"
-                        onClick={(e) => e.stopPropagation()} 
-                      >
-                        <h2>Edit Profile</h2>
-                        <button onClick={() => setModal(false)}>Close</button>
-                      </div>
+                  <ModalContent>
+                    <div className="modal-header">
+                      <h2>Edit Profile</h2>
+                      <button onClick={() => setModal(false)}>X</button>
                     </div>
-                  </Modal>,
+
+                    <form className="modal-form" onSubmit={handleUser(onSubmit)}>
+                      <label htmlFor="image">Image URL</label>
+                      <input 
+                        type="text" 
+                        id="image" 
+                        placeholder="Insert a image url"
+                        {...registerUser("avatar")}
+                      />
+                      {errorsUser.avatar && <span>{errorsUser.avatar.message}</span>}
+
+                      <label htmlFor="background">Background URL</label>
+                      <input 
+                        type="text" 
+                        id="background" 
+                        placeholder="insert a background-url" 
+                        {...registerUser("background")}
+                      />
+                      {errorsUser.background && <span>{errorsUser.background.message}</span>}
+
+                      <input type="submit" value="Submit" placeholder="Submit"/>
+                    </form>
+                  </ModalContent>
+                </Modal>,
                   document.body
                 )}
             </>
