@@ -1,6 +1,6 @@
 export const widthHeight = (width, maxWidth, height, maxHeight) => `
     width: ${width};
-    max-width: ${maxWidth}px;
+    max-width: ${maxWidth};
     height: ${height};
-    max-height: ${maxHeight}px;
+    max-height: ${maxHeight};
 `

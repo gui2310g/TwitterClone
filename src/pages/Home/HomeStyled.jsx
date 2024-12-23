@@ -15,19 +15,19 @@ export const PostHeader = styled.div`
     ${flex("column", "none", "center", "10")}
     
     img {
-        ${widthHeight("40px", "40", "40px", "40")}
+        ${widthHeight("40px", "40px", "40px", "40px")}
         border-radius: 20px;
     }
 
     h2 { text-align: center; }
     
     textarea {
-        ${widthHeight("100%", "500", "50px", "50")}
+        ${widthHeight("100%", "500px", "50px", "50px")}
         resize: none;
         height: 50px;
     }
 
-    input[type="text"] { ${widthHeight("100%", "340", "20px", "20")} }
+    input[type="text"] { ${widthHeight("100%", "340px", "20px", "20px")} }
 
     input[type="submit"] {
         padding: 10px;

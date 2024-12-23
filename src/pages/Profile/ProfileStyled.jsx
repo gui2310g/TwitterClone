@@ -4,7 +4,7 @@ import { widthHeight } from "../../utils/widthHeightStyled.jsx";
 import { ModalStyled } from "../../utils/ModalStyled.jsx";
 
 export const ProfilePage = styled.article`
-  ${widthHeight("100%", "600", "auto", "none")}
+  ${widthHeight("100%", "600px", "auto", "none")}
   color: black;
   border: 1px solid gray;
 
@@ -29,7 +29,7 @@ export const ProfileBody = styled.section`
   #user { ${flex("none", "space-between", "none", "0")} }
 
   img {
-    ${widthHeight("100%", "100%", "100%", "200")}
+    ${widthHeight("100%", "100%", "100%", "200px")}
     object-fit: cover;
   }
 
@@ -50,7 +50,7 @@ export const ProfileBody = styled.section`
   }
 
   #followers {
-    ${widthHeight("none", "none", "none", "10")}
+    ${widthHeight("none", "none", "none", "10px")}
     margin-top: 20px;
   }
 `;

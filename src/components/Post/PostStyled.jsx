@@ -23,7 +23,7 @@ export const PostBody = styled.section`
     text-overflow: ellipsis; 
 
     img {
-      ${widthHeight("100%", "100%", "100%", "520")}
+      ${widthHeight("100%", "100%", "100%", "520px")}
       margin-top: 10px;
       border-radius: 20px;
       object-fit: contain;
