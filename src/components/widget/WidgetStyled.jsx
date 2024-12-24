@@ -1,13 +1,12 @@
 import styled from "styled-components";
+import { widthHeight } from "../../utils/widthHeightStyled.jsx";
+import { flex } from "../../utils/flexStyled.jsx";
 
 export const Widget = styled.article`
-    width: 100%;
-    max-width: 350px;
+    ${widthHeight("100%", "350px")}
     padding: 10px;
 
-    @media (max-width: 1060px) {
-       display: none;
-    }
+    @media (max-width: 1060px) { display: none; }
 `
 export const FollowingWidget = styled.div`
     border: 1px solid black;
@@ -16,13 +15,11 @@ export const FollowingWidget = styled.div`
     padding: 10px;
 
     #users {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+        ${flex("none", "space-between", "center", "none")}
 
-    #users a {
-        text-decoration: none;
-        color: black;
+        a {
+            text-decoration: none;
+            color: black;
+        }
     }
 `
