@@ -1,53 +1,34 @@
 import styled from "styled-components"
+import { flex } from "../../utils/flexStyled.jsx"
+import { widthHeight } from "../../utils/widthHeightStyled.jsx"
 
 export const AuthContainer = styled.article`    
+    ${flex("none", "center", "none", "200px")}
     font-family: 'Open-Sans', sans-serif;
     position: absolute;
-    display: flex;
-    justify-content: center;
     transform: translate(-50%, -50%);
     top: 45%;
     left: 50%;
-    gap: 200px;
     
     img {
-        width: 100%;
-        max-width: 300px;
+        ${widthHeight("100%", "300px")}
         object-fit : contain;
     }
 
     section {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 500px;
+        ${flex("column")}
+        ${widthHeight("100%", "500px")}
     }
 
-    h1 {
-        font-size: 50px; 
-    }
+    h1 { font-size: 50px; }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+    form { ${flex("column", "none", "none", "1rem")} }
 
     @media screen and (max-width: 1024px) {
+        ${flex("column", "none", "center", "10px")}
         position: sticky;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
         transform: none;
         
-        img {
-          width: 100px;  
-        }
+        img { width: 100px; }
     }
-`
-
-export const ErrorInput = styled.span`
-    color: red;
-    font-weight: bold;
-    font-size: 13px;
 `

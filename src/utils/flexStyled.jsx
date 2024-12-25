@@ -3,5 +3,5 @@ export const flex = (direction, justify, align, gap) => `
     flex-direction: ${direction || "none"};
     justify-content: ${justify || "none"};
     align-items: ${align || "none"};
-    gap: ${gap}px;
+    gap: ${gap};
 `

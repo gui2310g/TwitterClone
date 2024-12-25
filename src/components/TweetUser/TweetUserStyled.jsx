@@ -3,7 +3,7 @@ import { flex } from "../../utils/flexStyled.jsx";
 import { widthHeight } from "../../utils/widthHeightStyled.jsx";
 
 export const TweetUser = styled.div`
-  ${props => flex("row", "none", props.$secondary ? "center" : "", 10)}
+  ${props => flex("row", "none", props.$secondary ? "center" : "", "10px")}
   margin: ${(props) => (props.$secondary ? "10px" : "0px")};
   
   img {

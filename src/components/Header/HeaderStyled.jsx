@@ -11,17 +11,17 @@ export const Header = styled.header`
 `;
 
 export const Nav = styled.nav`
-  ${flex("column", "none", "none", "20")}
+  ${flex("column", "none", "none", "20px")}
   padding: 20px;
 
   @media (max-width: 1290px) {
-    ${flex("none", "center", "center", "20")}
+    ${flex("none", "center", "center", "20px")}
 
     span, div { display: none; }
   }
 
   a {
-    ${flex("none", "none", "center", "10")}
+    ${flex("none", "none", "center", "10px")}
     text-decoration: none;
     color: black;
     font-size: 25px;

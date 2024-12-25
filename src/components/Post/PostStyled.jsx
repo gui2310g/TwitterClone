@@ -32,10 +32,10 @@ export const PostBody = styled.section`
 `;
 
 export const PostFooter = styled.section`
-  ${flex("none", "none", "center", "15")}
+  ${flex("none", "none", "center", "15px")}
 
   section {
-    ${flex("none", "none", "center", "0.5")}
+    ${flex("none", "none", "center", "0.5px")}
     margin: 15px 0px 10px 60px;
   }
 `;
