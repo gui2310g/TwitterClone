@@ -7,7 +7,9 @@ import Profile from "./pages/Profile/Profile.jsx";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
 import Search from "./pages/Search/Search.jsx";
 import Auth from "./pages/Authentication/Auth.jsx";
+import TweetPage from "./pages/TweetPage/TweetPage.jsx";
 import UserProvider from "./contexts/UserContent.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
+      {
+        path: "/tweet",
+        element: <TweetPage />
+      }
     ],
   },
   {

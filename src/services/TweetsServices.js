@@ -39,3 +39,12 @@ export const GetAllTweetsByUserLogged = () => {
   return response;
 }
 
+export const addComments = async (data, tweetId) => {
+  const response = await axios.post(`${baseUrl}tweets/${tweetId}/comments`, data, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`
+    }
+  },
+  { withCredentials: true });
+  return response;
+}

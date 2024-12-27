@@ -12,7 +12,7 @@ export const PostCreate = styled.form`
     padding-bottom: 10px;
 `
 export const PostHeader = styled.div`
-    ${flex("column", "none", "center", "10")}
+    ${flex("column", "none", "center", "10px")}
     
     img {
         ${widthHeight("40px", "40px", "40px", "40px")}

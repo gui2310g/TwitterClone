@@ -32,3 +32,8 @@ export const AuthContainer = styled.article`
         img { width: 100px; }
     }
 `
+export const ErrorInput = styled.span`
+    color: red;
+    font-weight: bold;
+    font-size: 13px;
+`
