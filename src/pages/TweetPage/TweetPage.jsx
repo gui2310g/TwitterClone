@@ -1,6 +1,24 @@
+import PostComponent from "../../components/Post/PostComponent"
+import { useTweetPage } from "./useTweetPage";
+
 const TweetPage = () => {
+    const { tweet } = useTweetPage();
+
     return (
-        <h2>teste pagina</h2>
+    <>
+        {tweet && (
+            <PostComponent 
+                primary
+                id={tweet.id}
+                name={tweet.username}
+                text={tweet.text}
+                userAvatar={tweet.userAvatar}
+                banner={tweet.banner}
+                isActive={false}
+                idUser={tweet.userId}
+            /> 
+        )}  
+    </>
     )
 }
 

@@ -1,5 +1,5 @@
 import { Posts, PostCreate, PostHeader } from "./HomeStyled.jsx";
-import Post from "../../components/Post/PostComponent.jsx";
+import PostComponent from "../../components/Post/PostComponent.jsx";
 import { useHome } from "./useHome.jsx";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContent.jsx";
@@ -41,14 +41,16 @@ const Home = () => {
       </PostCreate>
 
       {Tweets.map((tweet) => (
-        <Post
+        <PostComponent  
           primary
-          id={tweet.userId}
+          idUser={tweet.userId} 
+          tweetId={tweet.id}   
           key={tweet.id}
           name={tweet.username}
           text={tweet.text}
           userAvatar={tweet.userAvatar}
           banner={tweet.banner}
+          isActive={true}
         />
       ))}
     </Posts>

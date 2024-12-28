@@ -5,6 +5,12 @@ import { widthHeight } from "../../utils/widthHeightStyled.jsx";
 export const Post = styled.article`
   border-bottom: 1px solid lightgray;
   max-width: 600px;
+  color: black;
+  cursor: pointer;
+  height: min-content;
+  .no-pointer-events { pointer-events: none; } 
+
+  cursor: ${props => (props.$isActive ? "pointer" : "default")}; 
 `;
 
 export const PostBody = styled.section`
@@ -13,6 +19,9 @@ export const PostBody = styled.section`
   a {
     text-decoration: none;
     color: black;
+    pointer-events: auto; 
+
+    &:hover { text-decoration: underline;}
   }
     
   #description {

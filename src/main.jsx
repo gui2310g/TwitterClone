@@ -36,8 +36,8 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
-      {
-        path: "/tweet",
+      { 
+        path: "/tweets/:id",
         element: <TweetPage />
       }
     ],

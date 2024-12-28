@@ -18,6 +18,11 @@ export const GetAllTweets = () => {
   return response;
 }
 
+export const GetTweetById = (tweetId) => {
+  const response = axios.get(`${baseUrl}tweets/find/${tweetId}`)
+  return response;
+}
+
 export const SearchedTweets = (text) => {
   const response = axios.get(`${baseUrl}tweets/search?text=${text}`)
   return response;
