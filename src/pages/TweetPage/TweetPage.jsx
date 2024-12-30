@@ -1,11 +1,13 @@
-import PostComponent from "../../components/Post/PostComponent"
-import { useTweetPage } from "./useTweetPage";
+import PostComponent from "../../components/Post/PostComponent.jsx"
+import { TweetPage } from "./TweetPageStyled.jsx";
+import { useTweetPage } from "./useTweetPage.jsx";
 
-const TweetPage = () => {
-    const { tweet } = useTweetPage();
-
+const TweetPageComponent = () => {
+ 
+    const { tweet, comments } = useTweetPage();
+ 
     return (
-    <>
+    <TweetPage>
         {tweet && (
             <PostComponent 
                 primary
@@ -18,8 +20,24 @@ const TweetPage = () => {
                 idUser={tweet.userId}
             /> 
         )}  
-    </>
+     
+        {comments.length === 0 && <h2>This tweet doesnt have a comment</h2>}
+
+        {
+            comments.map((comment) => (
+                <PostComponent 
+                    key={comment.id}
+                    name={comment.username}
+                    text={comment.text}
+                    userAvatar={comment.userAvatar}
+                    banner={comment.banner}
+                    isActive={false}
+                    idUser={comment.userId}
+                />
+            ))
+        }
+    </TweetPage>
     )
 }
 
-export default TweetPage;
+export default TweetPageComponent;

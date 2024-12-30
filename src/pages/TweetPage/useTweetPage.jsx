@@ -1,10 +1,11 @@
-import { addComments, GetTweetById } from "../../services/TweetsServices.js";
+import { addComments, findAllCommentsByTweetId, GetTweetById } from "../../services/TweetsServices.js";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../utils/fetchData.jsx";
 import { useParams } from "react-router-dom";
 
 export const useTweetPage = () => {
     const [tweet, setTweets] = useState({});  
+    const [comments, setComments] = useState([]);
     const { id } = useParams();
 
     async function findTweet(tweetId) {
@@ -17,7 +18,14 @@ export const useTweetPage = () => {
     async function addComment(data) {
         await fetchData(
             () => addComments(data),
-            (response) => setTweets((prev) => [response.data, ...prev]),
+            (response) => setComments((prev) => [response.data, ...prev]),
+        )
+    }
+
+    async function getCommentsByTweetId(tweetId) {
+        await fetchData(
+            () => findAllCommentsByTweetId(tweetId),
+            (response) => setComments(response.data)
         )
     }
 
@@ -26,8 +34,11 @@ export const useTweetPage = () => {
         reset();
     }
     useEffect(() => {
-        if(id) findTweet(id);
+        if(id) {
+            findTweet(id);
+            getCommentsByTweetId(id);
+        }
     }), [id];
 
-    return { tweet, onSubmit }
+    return { tweet, comments, onSubmit }
 }

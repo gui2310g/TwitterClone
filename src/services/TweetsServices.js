@@ -53,3 +53,8 @@ export const addComments = async (data, tweetId) => {
   { withCredentials: true });
   return response;
 }
+
+export const findAllCommentsByTweetId = async (tweetId) => {
+  const response = await axios.get(`${baseUrl}tweets/findAll/${tweetId}/comments`)
+  return response;
+}
