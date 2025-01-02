@@ -38,6 +38,7 @@ const Home = () => {
           userAvatar={tweet.userAvatar}
           banner={tweet.banner}
           isActive={true}
+          showComments={true}
         />
       ))}
     </section>

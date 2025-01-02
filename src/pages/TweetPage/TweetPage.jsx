@@ -26,6 +26,7 @@ const TweetPageComponent = () => {
                     banner={tweet.banner}
                     isActive={false}
                     idUser={tweet.userId}
+                    showComments={true}
                 /> 
             )} 
 
@@ -50,6 +51,7 @@ const TweetPageComponent = () => {
                         banner={comment.banner}
                         isActive={false}
                         idUser={comment.userId}
+                        showComments={false}
                     />
                 ))
             }

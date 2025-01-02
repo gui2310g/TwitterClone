@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 
 
-const PostComponent = ({ userAvatar, name, text, banner, tweetId, idUser, isActive}) => {
+const PostComponent = ({ userAvatar, name, text, banner, tweetId, idUser, isActive, showComments}) => {
 
   const navigate = useNavigate();
 
@@ -34,9 +34,14 @@ const PostComponent = ({ userAvatar, name, text, banner, tweetId, idUser, isActi
             <FaHeart />
           </section>
 
-          <section>
-            <FaComments />
-          </section>
+          {
+            showComments && (
+              <section>
+                <FaComments />
+              </section>
+            )
+          }
+          
         </PostFooter>
       </Post>
   );
@@ -49,7 +54,8 @@ PostComponent.propTypes = {
   text: PropTypes.string,
   banner: PropTypes.string,
   tweetId: PropTypes.number,
-  idUser: PropTypes.number
+  idUser: PropTypes.number,
+  showComments: PropTypes.bool
 };
 
 export default PostComponent;
