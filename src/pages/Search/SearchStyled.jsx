@@ -1,13 +1,12 @@
 import styled from "styled-components";
-
+import { flex } from "../../utils/flexStyled.jsx";
 export const SearchPage = styled.article`
-    border-left: 1px solid red;
-    width: 600px;
+    border: 1px solid gray;
+    width: 100%;
     padding: 5px;
     
     ul {
-        display: flex;
-        justify-content: space-around;
+        ${flex("none", "space-around", "none", "0")}
         font-weight: bold;
         list-style-type: none;
         cursor: pointer;
@@ -18,29 +17,26 @@ export const SearchPage = styled.article`
             text-align: center;
             font-size: 17px;
             padding: 5px;
-            width: 200px;
-        }
-        
-        span {
-            border-bottom: 2px solid gray;
-        }
+            width: 100px;
 
-        li:hover {
-            background-color: gray;
-            color: white;
-            transition: all 0.5s;
-            border-radius: 10px;
-        }
+            &:hover {
+                background-color: gray;
+                color: white;
+                transition: all 0.5s;
+                border-radius: 10px;
+            }
 
-        
+            span {border-bottom: 2px solid gray;}    
+        }
     }
+
 
     #users {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        ${flex("none", "space-between", "center", "0")}
         padding: 10px;
-    }
 
-    
+        @media (max-width: 450px) {
+            ${flex("column")}
+        }
+    }
 `

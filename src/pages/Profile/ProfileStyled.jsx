@@ -96,7 +96,7 @@ export const ModalContent = styled.div`
   }
 
   .modal-form {
-    ${flex("column", "center", "center", "10")} 
+    ${flex("column", "center", "center", "10px")} 
     margin-top: 20px;
 
     input { ${widthHeight("100%", "100%", "30px", "30px")} }

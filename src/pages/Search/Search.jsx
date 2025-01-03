@@ -7,7 +7,7 @@ import { useSearch } from "./useSearch.jsx";
 
 const Search = () => {
   const { Tweets, Users, active, SearchTypes, handleTabClick } = useSearch();
-  
+
   return (
     <SearchPage>
       <SearchForm />
@@ -20,31 +20,25 @@ const Search = () => {
         ))}
       </ul>
 
-      <div>
-        {active === "Users" &&
-          Users.map((user) => (
-            <div id="users" key={user._id}>
-              <User
-                key={user.id}
-                userAvatar={user.avatar}
-                name={user.username}
-              />
-              <TweetButton text={"Follow"} />
-            </div>
-          ))}
+      {active === "Users" &&
+        Users.map((user) => (
+          <div id="users" key={user._id}>
+            <User key={user.id} userAvatar={user.avatar} name={user.username} />
+            <TweetButton text={"Follow"} />
+          </div>
+        ))}
 
-        {active === "Tweets" &&
-          Tweets.map((tweet) => (
-            <Post
-              primary
-              key={tweet.id}
-              name={tweet.username}
-              text={tweet.text}
-              userAvatar={tweet.userAvatar}
-              banner={tweet.banner}
-            />
-          ))}
-      </div>
+      {active === "Tweets" &&
+        Tweets.map((tweet) => (
+          <Post
+            primary
+            key={tweet.id}
+            name={tweet.username}
+            text={tweet.text}
+            userAvatar={tweet.userAvatar}
+            banner={tweet.banner}
+          />
+        ))}
     </SearchPage>
   );
 };
